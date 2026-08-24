@@ -86,7 +86,7 @@
     gap: 20px;
     align-items: center;
     text-align: center;
-    padding: 7px;
+    padding: 20px 20px;
     background-color: white;
     border-radius: 10px;
 }
@@ -106,7 +106,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 .cardText{
-    font-size: clamp(0.7rem, 3vw,rem);
+    font-size: clamp(0.6rem, 3vw, 1rem);
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
