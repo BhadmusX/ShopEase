@@ -39,9 +39,12 @@ export function Cart(){
         <>
         <div className={styles.container}>
             <h1 className={styles.text}>Your Shopping Cart</h1>
+            <div className={styles.cartContainer}>
+                <div className={styles.cartItems}>
             {
                 cartItems.map((item) => {
                     return <div className={styles.itemContainer} key={item.id}>
+
 
                             <div className={styles.itemTopContainer}>
                                 <div>
@@ -65,6 +68,7 @@ export function Cart(){
                     </div>
                 })
             }
+            </div>
 
             <div className={styles.checkoutCard}>
                 <h1 className={styles.orderSummary}>Order Summary</h1>
@@ -78,6 +82,7 @@ export function Cart(){
                     <button className={styles.checkoutBtn} onClick={() => setShowModal(true)}>Proceed to Checkout</button>
                     <Link to="/shop" className={styles.continueShopping}>Continue Shopping</Link></div>
             </div>
+        </div>
         </div>
 
         { showModal && ( <div className={styles.overlay}>

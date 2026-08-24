@@ -15,11 +15,13 @@ export default function Products(){
             <h1 className={styles.text}>All Products</h1>
             <p className={styles.p}>Discover our latest collection curated just for you.</p>
         </div>
-        {
-            products.map((prod) => {
+        <div className={styles.products}>{
+              products.map((prod) => {
                 return <ProductCard key={prod.id} product={prod}/>
             })
         }
+        </div>
+        
         </div>
     )
 }

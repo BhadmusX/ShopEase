@@ -22,7 +22,8 @@ export default function ProductCard({ product }) {
                 <img className={styles.img} src={product.image} alt={product.title} />
             </div>
             <div className={styles.infoContainer}>
-                <p className={styles.text}>{product.title}</p>
+                <div className={styles.info}> 
+                     <p className={styles.text}>{product.title}</p>
                 <p className={styles.price}>${product.price}</p>
                 <div className={styles.btnContainer}>
                     <button className={styles.btn} type="button" onClick={decrement}><Minus size={20}/></button>
@@ -31,6 +32,7 @@ export default function ProductCard({ product }) {
                 </div>
                 <div className={styles.addbtnContainer}>
                     <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button>
+                </div>
                 </div>
             </div>
         </div>

@@ -11,10 +11,12 @@ export default function Homepage (){
             <main className={styles.main}>
                 <div className={styles.container}>
                     <div className={styles.hero}>
+                        <div className={styles.heroTopContainer}>
                         <h1 className={styles.heroHeader}>Modern Essentials for Your Everyday</h1>
                     <p className={styles.heroText}>Discover our curated collection of high-quality products designed to elevate your lifestyle. Clean lines, premium materials, and unparalleled craftsmanship.</p>
 
                     <div><Link to="/shop" className={styles.heroBtn}>Shop Now</Link></div>
+                    </div>
                      <div className={styles.heroImg}><img className={styles.img} src={logo} alt="Shop image" /></div>
                      </div>
 

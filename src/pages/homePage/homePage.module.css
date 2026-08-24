@@ -24,6 +24,12 @@
     gap: 20px;
     padding: 20px;
 }
+.heroTopContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px; 
+}
 .heroHeader{
    font-size: clamp(2rem, 3vw, 2.5rem);
    line-height: 1.2;
@@ -109,4 +115,28 @@
     font-size: clamp(0.6rem, 3vw, 1rem);
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+@media (min-width: 768px) {
+    .hero{
+        display: flex;
+        flex-direction: row;
+        padding: 0 20vh; 
+    }
+    .heroImg{
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+    border-radius: 20px;
+    overflow: hidden; 
+}
+.whyShop{
+    padding: 10vh 20vh;
+}
+.cardContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
 }
