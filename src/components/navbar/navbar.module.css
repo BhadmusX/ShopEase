@@ -30,13 +30,16 @@ a{
     font-weight: 500;
     font-size: clamp(1.1rem, 3vw, 1.4rem);
 }
+.activeLink{
+   font-weight: 700;
+    color: #005236; 
+    border-bottom: 1px solid #005236; 
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .link:hover{
     color: #005236;
     font-weight: 700;
-}
-.link:active{
-    font-weight: 700;
-    color: #005236;
 }
 .cartItems{
     background-color: #005236;

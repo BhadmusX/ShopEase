@@ -1,5 +1,5 @@
 import { useCart } from "../../hooks/useCart";
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import styles from '../navbar/navbar.module.css';
 export const Navbar = () => {
     const {cartItems} = useCart();
@@ -8,9 +8,9 @@ export const Navbar = () => {
         <div className={styles.navbarContainer}>
             <h1 className={styles.appname}>ShopEase</h1>
             <div className={styles.navlinks}>
-                <Link to='/' className={styles.link}>Home</Link>
-                <Link to='/shop' className={styles.link}>Shop</Link>
-                <Link to='/cart' className={styles.link}>Cart {cartItems.length > 0 && <span className={styles.cartItems}>{cartItems.length}</span>}</Link>
+                <NavLink to='/' className={({isActive}) => isActive ? styles.activeLink : styles.link} >Home</NavLink>
+                <NavLink to='/shop' className={({isActive}) => isActive ? styles.activeLink : styles.link}>Shop</NavLink>
+                <NavLink to='/cart' className={({isActive}) => isActive ? styles.activeLink : styles.link}>Cart {cartItems.length > 0 && <span className={styles.cartItems}>{cartItems.length}</span>}</NavLink>
             </div>
         </div>
     )

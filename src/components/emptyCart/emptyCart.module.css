@@ -6,11 +6,11 @@
 .text{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
-    font-size: clamp(1.5rem, 3vw, 1.8rem);
+    font-size: clamp(1.3rem, 3vw, 2rem);
 }
 .shoppingBtn{
     color: #005236;
      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
-    font-size: clamp(1rem, 3vw, 1.8rem);
+    font-size: clamp(0.8rem, 3vw, 1.2rem);
  }

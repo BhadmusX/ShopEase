@@ -25,12 +25,12 @@ export default function ProductCard({ product }) {
                 <p className={styles.text}>{product.title}</p>
                 <p className={styles.price}>${product.price}</p>
                 <div className={styles.btnContainer}>
-                    <button className={styles.btn} type="button" onClick={decrement}><Minus size={30}/></button>
+                    <button className={styles.btn} type="button" onClick={decrement}><Minus size={20}/></button>
                     <input className={styles.input} type="number" value={qty} min={1} onChange={(e) => setQty(Math.max(1, Number(e.target.value)))}/>
-                    <button className={styles.btn} type="button" onClick={increment}><Plus size={30}/></button>
+                    <button className={styles.btn} type="button" onClick={increment}><Plus size={20}/></button>
                 </div>
                 <div className={styles.addbtnContainer}>
-                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={30}/>Add</button>
+                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button>
                 </div>
             </div>
         </div>

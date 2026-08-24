@@ -1,5 +1,5 @@
 .productContainer{
-    width: 350px;
+    width: 300px;
     border: 1px solid #A3ABC4;
     border-radius: 20px;
     overflow: hidden;
@@ -11,19 +11,19 @@
     align-items: center;
     padding-bottom: 10px;
 }
-img{
-    width: 200px;
-    height: 300px;
+.img{
+    width: 150px;
+    height: 200px;
     object-fit: contain;
 }
 .text{
-    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: left;
 }
 .price{
-  font-size: clamp(1.2rem, 3vw, 1.4rem);
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   
 }
@@ -47,32 +47,30 @@ img{
 .btn{
     border: none;
     background-color: white;
-    width: 40px;
+    width: 30px;
     height: 26px;
     box-sizing: border-box;
 }
 .input{
     border: none;
-    width: 40px;
+    width: 30px;
     height: 26px;
     padding: 4px;
     text-align: center;
     font-size: clamp(1rem, 3vw, 1.2rem);
     box-sizing: border-box;
 }
-.addbtnContainer{
-}
 .addbtn{
    background-color: #005236; 
    color: white;
-   padding: 6px 30px;
+   padding: 7px 30px;
    border: none;
    border-radius: 10px;
    display: flex;
    flex-direction: row;
    justify-content: center;
    align-items: center;
-   font-size: clamp(1.2rem, 3vw, 2rem);
+   font-size: clamp(1.1rem, 3vw, 1.8rem);
    gap: 10px;
    font-weight: 600;
    width: 100%;

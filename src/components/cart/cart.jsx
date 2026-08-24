@@ -53,11 +53,11 @@ export function Cart(){
 
                             <div className={styles.itemBottomContainer}>
                                  <div className={styles.btnContainer}>
-                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.id)}><Minus size={30}/></button>
+                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.id)}><Minus size={20}/></button>
                                        <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateQuantity(item.id, Math.max(1, Number(e.target.value)))}/>
-                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.id)}><Plus size={30}/></button>
+                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.id)}><Plus size={20}/></button>
                                  </div>
-                                 <div><button className={styles.removeBtn} onClick={() => removeitem(item.id)}><Trash/>Remove</button></div>
+                                 <div><button className={styles.removeBtn} onClick={() => removeitem(item.id)}><Trash size={20}/>Remove</button></div>
                             </div>
 
                             <div className={styles.subtotal}><p>Subtotal:</p>${subtotal(item)}</div>
