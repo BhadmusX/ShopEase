@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.appWrapper{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.main{
+    display: flex;
+    flex: 1;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 50px 0;
+}
+.hero{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.heroHeader{
+   font-size: clamp(2.5rem, 3vw, 1.4rem);
+   line-height: 1.2;
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+}
+.heroText{
+   font-size: clamp(1rem, 3vw, 1.4rem);
+   line-height: 1.4;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #565E74;
+}
+.heroBtn{
+     font-size: clamp(1.2rem, 3vw, 1.4rem);
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #005236;
+    color: white;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 10px;  
+    text-align: center;
+}
+.heroImg{
+   height: 500px;
+    width: 370px;
+    border-radius: 20px;
+    overflow: hidden; 
+}
+.img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 30% 50%;
+}
+.whyShop{
+    background-color: #EEF0FF;
+    padding:50px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.whyShopHeader{
+    font-size: clamp(1.5rem, 3vw, 1.4rem);
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+    padding: 20px 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+.icon{
+    background-color: #BEFFDB;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cardHeader{
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+.cardText{
+    font-size: clamp(0.9rem, 3vw, 1.4rem);
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}

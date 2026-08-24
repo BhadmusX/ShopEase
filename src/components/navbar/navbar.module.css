@@ -1,0 +1,48 @@
+.navbarContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid #565E74;
+}
+.appname{
+    color: #005236;
+    font-size: clamp(1.8rem, 4vw, 2rem);
+    font-weight: 700;
+    font-family:sans-serif;
+}
+.navlinks{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 0 10px;
+}
+a{
+    list-style: none;
+     text-decoration: none;
+    color: inherit;
+
+}
+.link{
+    color: #131B2E;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+}
+.link:hover{
+    color: #005236;
+    font-weight: 700;
+}
+.link:active{
+    font-weight: 700;
+    color: #005236;
+}
+.cartItems{
+    background-color: #005236;
+    color: white;
+    padding: 0 5px;
+    border-radius: 50%;
+
+}
+
