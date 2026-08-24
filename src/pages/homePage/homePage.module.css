@@ -25,32 +25,32 @@
     padding: 20px;
 }
 .heroHeader{
-   font-size: clamp(2.5rem, 3vw, 1.4rem);
+   font-size: clamp(2rem, 3vw, 2.5rem);
    line-height: 1.2;
     font-weight: 700;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
 }
 .heroText{
-   font-size: clamp(1rem, 3vw, 1.4rem);
+   font-size: clamp(0.7rem, 3vw, 1rem);
    line-height: 1.4;
     font-weight: 400;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #565E74;
 }
 .heroBtn{
-     font-size: clamp(1.2rem, 3vw, 1.4rem);
+     font-size: clamp(1.1rem, 3vw, 1.3rem);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #005236;
     color: white;
     border: none;
-    padding: 9px 20px;
+    padding: 9px 16px;
     border-radius: 10px;  
     text-align: center;
 }
 .heroImg{
    height: 500px;
-    width: 370px;
+    width: 350px;
     border-radius: 20px;
     overflow: hidden; 
 }
@@ -62,14 +62,14 @@
 }
 .whyShop{
     background-color: #EEF0FF;
-    padding:50px 10px;
+    padding:50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 }
 .whyShopHeader{
-    font-size: clamp(1.5rem, 3vw, 1.4rem);
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
@@ -92,20 +92,20 @@
 .icon{
     background-color: #BEFFDB;
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .cardHeader{
-    font-size: clamp(1.2rem, 3vw, 1.4rem);
-    font-weight: 700;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 .cardText{
-    font-size: clamp(0.9rem, 3vw, 1.4rem);
+    font-size: clamp(0.7rem, 3vw,rem);
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
