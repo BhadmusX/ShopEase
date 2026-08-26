@@ -29,7 +29,7 @@ a{
 .navIcons{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 15px;
     color: #005236;
 }
 .iconLink{
@@ -68,7 +68,7 @@ a{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
     position: relative;
 }
 .nav{

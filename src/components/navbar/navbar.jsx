@@ -21,10 +21,10 @@ export const Navbar = () => {
             <div className={styles.navContainer}>
                 <div className={styles.navIcons}>
                     <NavLink to="/wishlist" className={styles.iconLink}>
-                        <Heart size={23} className={styles.navIcon}/><span className={wishItems.length > 0 && styles.itemsLength}>{wishItems.length > 0 && wishItems.length}</span>
+                        <Heart size={25} className={styles.navIcon}/><span className={wishItems.length > 0 && styles.itemsLength}>{wishItems.length > 0 && wishItems.length}</span>
                     </NavLink>
                     <NavLink to="/cart" className={styles.iconLink}>
-                        <ShoppingCart size={23} className={styles.navIcon}/><span className={cartItems.length > 0 && styles.itemsLength}>{cartItems.length > 0 && cartItems.length }</span>
+                        <ShoppingCart size={25} className={styles.navIcon}/><span className={cartItems.length > 0 && styles.itemsLength}>{cartItems.length > 0 && cartItems.length }</span>
                     </NavLink>
                 </div>
 
