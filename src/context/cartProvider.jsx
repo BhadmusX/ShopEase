@@ -2,6 +2,7 @@ import { useState } from "react";
 import { cartContext } from "./cartContext";
 export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
+    const [wishItems, setWishItems] = useState([]);
 
     const addToCart = (item, qty) => {
         setCartItems((prev) => {
@@ -54,8 +55,26 @@ export const CartProvider = ({children}) => {
         })
     }
 
+    const addToWish = ( product, qty) => {
+        setWishItems((prev) => {
+            const exist = prev.some((item) => item.id === product.id);
+            if(exist){
+                return prev.map((item) => item.id === product.id ? {...item, qty: item.qty + qty} : item)
+            }
+            else{
+                return [...prev, {...product, qty}]
+            }
+        })
+    };
+
+    const removeWish = (product) => {
+        setWishItems((prev) => {
+            return prev.filter((item) => item.id !== product.id);
+        });
+    };
+
     return (
-        <cartContext.Provider value={{cartItems, addToCart, increaseQty, decreaseQty, clearCart, removeItem, updateQuantity}}>
+        <cartContext.Provider value={{cartItems, addToCart, increaseQty, decreaseQty, clearCart, removeItem, updateQuantity, addToWish, removeWish, wishItems}}>
         {children}
         </cartContext.Provider>
     );

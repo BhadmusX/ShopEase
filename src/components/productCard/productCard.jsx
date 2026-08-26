@@ -2,11 +2,11 @@
 import styles from '../productCard/productCard.module.css'
 import { useState } from "react";
 import { useCart } from "../../hooks/useCart";
-import { Plus, Minus, ShoppingCart } from "lucide-react";
+import { Plus, Minus, ShoppingCart, Heart} from "lucide-react";
 
 export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
-    const { addToCart } = useCart();
+    const { addToCart, addToWish, wishItems, removeWish} = useCart();
 
     const increment = () => setQty((prev) => prev + 1);
     const decrement = () => setQty((prev) => Math.max(1, prev - 1));
@@ -15,6 +15,17 @@ export default function ProductCard({ product }) {
         addToCart(product, qty);
         setQty(1);
     };
+
+    const addtowish = (item, qty) => {
+        const exist = wishItems.some((i) => i.id === item.id);
+        if(exist){
+            removeWish(item);
+        } else{
+            addToWish(item, qty);
+        }
+    }
+
+    const isWishListed = wishItems.some((item) => item.id === product.id);
 
     return (
         <div className={styles.productContainer} key={product.id}>
@@ -31,7 +42,7 @@ export default function ProductCard({ product }) {
                     <button className={styles.btn} type="button" onClick={increment}><Plus size={20}/></button>
                 </div>
                 <div className={styles.addbtnContainer}>
-                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button>
+                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button> <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={() => addtowish(product, product.qty)}/> </div>
                 </div>
                 </div>
             </div>
