@@ -34,11 +34,14 @@ export const Navbar = () => {
                     <span className={styles.span}></span>
                 </div>
 
-                <div className={`${styles.nav} ${isHamOpen ? styles.activeNav : styles.Nav}`}>
+                <div className={isHamOpen ? styles.activeOverlay : styles.overlay} onClick={() => setHamOpen(false)}>
+                    <div className={`${styles.nav} ${isHamOpen ? styles.activeNav : styles.Nav}`}>
                     <div className={styles.logoContainer}><img className={styles.logo}src={logo} alt="ShopEase" /></div>
                     <NavLink to="/" onClick={() => setHamOpen(false)} className={styles.navlink}>Home</NavLink>
                     <NavLink to='/shop' onClick={() => setHamOpen(false)} className={styles.navlink}>Shop</NavLink>
-                </div>
+                    </div>
+                </div>  
+
             </div>
 
 

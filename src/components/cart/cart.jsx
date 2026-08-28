@@ -85,7 +85,7 @@ export function Cart(){
         </div>
         </div>
 
-        { showModal && ( <div className={styles.overlay}>
+        { showModal && ( <div className={styles.overlay} onClick={handleCloseModal}>
     <div className={styles.modal}>
       <h2 className={styles.successText}>Payment Successful!</h2>
       <p className={styles.successText2}>Thank you for your order.</p>

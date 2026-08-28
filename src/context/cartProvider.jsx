@@ -1,13 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cartContext } from "./cartContext";
 export const CartProvider = ({children}) => {
-    const [cartItems, setCartItems] = useState([]);
-    const [wishItems, setWishItems] = useState([]);
+    const [cartItems, setCartItems] = useState(() => {
+        try{
+        const saved = localStorage.getItem("products");
+        return saved ? JSON.parse(saved) : []
+        }catch{
+            return [];
+        }
+    });
+    const [wishItems, setWishItems] = useState(() => {
+        try{
+        const saved = localStorage.getItem("wishItems");
+        return saved ? JSON.parse(saved) : [];
+        }catch{
+            return [];
+        }
+    });
+
+    useEffect(() => {
+        localStorage.setItem("products", JSON.stringify(cartItems))
+    }, [cartItems]);
+
+    useEffect(() => {
+        localStorage.setItem("wishItems", JSON.stringify(wishItems));
+    }, [wishItems]);
 
     const addToCart = (item, qty) => {
         setCartItems((prev) => {
              const  exist = prev.some((items) => {
             return items.id === item.id
+
         }) 
         if(exist){
             return prev.map((i) => {
