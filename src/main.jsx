@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router'
 import router from './routes'
-import { CartProvider } from './context/cartProvider.jsx'
+import { CartProvider } from './context/cartProvider.js'
 
 
 createRoot(document.getElementById('root')).render(

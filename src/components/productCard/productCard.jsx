@@ -6,13 +6,16 @@ import { Plus, Minus, ShoppingCart, Heart} from "lucide-react";
 
 export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
-    const { addToCart, addToWish, wishItems, removeWish} = useCart();
+    const { dispatch, addToWish, wishItems, removeWish} = useCart();
 
     const increment = () => setQty((prev) => prev + 1);
     const decrement = () => setQty((prev) => Math.max(1, prev - 1));
 
     const handleAddToCart = () => {
-        addToCart(product, qty);
+        dispatch({
+            type: "addToCart",
+            payload: { ...product, qty }
+        });
         setQty(1);
     };
 

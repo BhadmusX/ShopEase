@@ -5,18 +5,34 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 export function Cart(){
-    const {cartItems, removeItem, increaseQty, decreaseQty, updateQuantity, clearCart} = useCart();
+    const {cartItems, dispatch} = useCart();
 
     const removeitem = (id) => {
-        removeItem(id);
+        dispatch({
+            type: "removeItem",
+            payload: {id}
+        })
     }
 
     const increaseqty = (id) => {
-        increaseQty(id);
+       dispatch({
+        type: "increaseQty",
+        payload: {id}
+       })
     }
 
     const decreaseqty = (id) => {
-        decreaseQty(id);
+       dispatch({
+        type: "decreaseQty",
+        payload: {id}
+       })
+    }
+
+    const updateQuantity = (id, newQty) => {
+        dispatch({
+            type: "updateQty",
+            payload: { id, qty: newQty }
+        });
     }
 
     const subtotal = (item) => {
@@ -30,7 +46,9 @@ export function Cart(){
 
     const handleCloseModal = () => {
   setShowModal(false);
-  clearCart(); 
+  dispatch({
+    type: "clearCart"
+  })
 };
 
 
