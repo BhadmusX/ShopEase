@@ -1,5 +1,5 @@
 import styles from '../products/products.module.css'
-import useFetchProducts from "../../hooks/fetchProducts";
+import useFetchProducts from "../../hooks/fetchProducts.js";
 import ProductCard from "../productCard/productCard.jsx";
 
 export default function Products(){

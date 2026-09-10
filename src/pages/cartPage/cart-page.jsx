@@ -1,6 +1,6 @@
 import { Navbar } from "../../components/navbar/navbar"
 import { Footer } from "../../components/footer/footer"
-import { useCart } from "../../hooks/useCart"
+import { useCart } from "../../hooks/useCart.js"
 import { EmptyCart } from "../../components/emptyCart/emptyCart";
 import { Cart } from "../../components/cart/cart";
 import styles from '../cartPage/cartPage.module.css'

@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/useCart"
+import { useCart } from "../../hooks/useCart.js"
 import { Trash, Plus, Minus } from "lucide-react";
 import styles from '../cart/cart.module.css'
 import { Link } from "react-router";

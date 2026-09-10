@@ -1,7 +1,7 @@
 // components/ProductCard.jsx
 import styles from '../productCard/productCard.module.css'
 import { useState } from "react";
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../hooks/useCart.js";
 import { Plus, Minus, ShoppingCart, Heart} from "lucide-react";
 
 export default function ProductCard({ product }) {

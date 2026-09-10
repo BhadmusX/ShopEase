@@ -4,6 +4,8 @@ import Homepage from "./pages/homePage/home-page";
 import { CartPage } from "./pages/cartPage/cart-page";
 import WishList from "./pages/wishListPage/wishList.jsx";
 import { ErrorPage } from "./pages/errorPage/errorpage.jsx";
+import SignUpPage from "./pages/signupPage/signupPage.jsx";
+import SignInPage from "./pages/signinPage/signinPage.jsx";
 const router = createBrowserRouter([
 
     {
@@ -12,6 +14,14 @@ const router = createBrowserRouter([
             {
         index: true,
         element: <Homepage/>,
+    },
+    {
+        path:'signup',
+        element: <SignUpPage/>
+    },
+    {
+        path:'signin',
+        element: <SignInPage/>
     },
     {
         path: "shop",

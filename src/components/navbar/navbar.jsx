@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../hooks/useCart.js";
 import { NavLink } from "react-router";
 import styles from '../navbar/navbar.module.css';
 import { useState } from "react";

@@ -2,7 +2,7 @@ import { Footer } from "../../components/footer/footer"
 import { Navbar } from "../../components/navbar/navbar"
 import WishItems from '../../components/wishItems/wishItems.jsx'
 import styles from '../wishListPage/wishList.module.css';
-import { useCart } from "../../hooks/useCart.jsx";
+import { useCart } from "../../hooks/useCart.js";
 import { EmptyWish } from "../../components/emptyWishList/emptyWishList.jsx";
 export default function WishList(){
     const {wishItems} = useCart();

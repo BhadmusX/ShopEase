@@ -1,4 +1,4 @@
-import { useCart } from "../../hooks/useCart";
+import { useCart } from "../../hooks/useCart.js";
 import ProductCard from "../productCard/productCard.jsx";
 import styles from '../wishItems/wishItems.module.css'
 export default function WishItems(){
