@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import AuthNavbar from "../../components/AuthNavbar/navbar";
+import SignUpForm from "../../components/signUpForm/signUpForm";
+import { Footer } from "../../components/footer/footer";
+import styles from '../signupPage/signupPage.module.css'
 
 export default function SignUpPage(){
     const [loading, setLoading] = useState(false);
@@ -42,36 +46,22 @@ export default function SignUpPage(){
     }
 
     return(
-        <div>
-            <p>{data}</p>
-            <p>{error}</p>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <label htmlFor="name">
-                    FullName
-                    <input type="text"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)} />
-                </label>
+        <div className={styles.container}>
+            <div className={styles.navbar}>
+                <AuthNavbar/>
+            </div>
 
-                <label htmlFor="email">
-                    Email
-                    <input type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)} />
-                </label>
+            <div className={styles.main}>
+                <div className={styles.textContainer}>
+                   <h1 className={styles.text}>Create an account</h1> 
+                   <p className={styles.p}>Join ShopEase for curated modern essentials.</p>
+                </div>
+                <SignUpForm data={data} email={email} password={password} name={name} setEmail={setEmail} setPassword={setPassword} loading={loading} setName={setName} handleSubmit={handleSubmit} error={error}/>
+            </div>
 
-                <label htmlFor="password">
-                    Password
-                    <input type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
-                </label>
-
-                <button type="submit">{loading ? "Signing Up": "Sign up"}</button>
-            </form>
-        </div>
+            <div>
+                 <Footer/>
+            </div>
+        </div>  
     )
 }

@@ -17,7 +17,8 @@ export default function AuthProvider ({children}){
                 if(!response.ok){
                     const data = await response.json();
                     setError(data.message);
-                    setUser(null)
+                    setUser(null);
+                    return;
                 }
 
                 const data = await response.json();

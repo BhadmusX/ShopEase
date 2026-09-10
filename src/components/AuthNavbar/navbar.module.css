@@ -1,0 +1,17 @@
+.appname{
+     color: #005236;
+    font-size: clamp(1.5rem, 4vw, 1.9rem);
+    font-weight: 700;
+    font-family:sans-serif;
+}
+.backLabel{
+    color: #565E74; 
+}
+.navContainer{
+        display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid #565E74;
+}

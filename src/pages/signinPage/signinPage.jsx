@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import SignInForm from "../../components/signInForm/signInForm";
+import AuthNavbar from "../../components/AuthNavbar/navbar";
+import { Footer } from "../../components/footer/footer";
+import styles from '../signinPage/signinPage.module.css'
 export default function SignInPage(){
 
     const [loading, setLoading] = useState(false);
@@ -47,29 +51,18 @@ export default function SignInPage(){
     }
 
     return(
-         <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
-            <p>{data}</p>
-            <p>{error}</p>
+         <div className={styles.container}>
 
-                <label htmlFor="email">
-                    Email
-                    <input type="email"
-                    id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)} />
-                </label>
+            <div><AuthNavbar/></div>
 
-                <label htmlFor="password">
-                    Password
-                    <input type="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)} />
-                </label>
+            <div className={styles.main}>
+                <div className={styles.textContainer}>
+                <h1 className={styles.text}>Welcome back</h1> 
+                <p className={styles.p}>Please enter your details to sign in.</p>
+                </div>
+                <SignInForm data={data} email={email} password={password} setEmail={setEmail} setPassword={setPassword} loading={loading} handleSubmit={handleSubmit} error={error}/></div>
 
-                <button type="submit">{loading ? "Signing In": "Sign In"}</button>
-            </form>
+            <div><Footer/></div>
         </div>
     )
 }

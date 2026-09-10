@@ -5,6 +5,11 @@ async function fetchWithAuth(url, options={}) {
         return response;
     }
 
+    // The sign-in page is public and must not try to refresh or redirect itself.
+    if(window.location.pathname === '/signin'){
+        return response;
+    }
+
     const refreshResponse = await fetch('http://localhost:5000/refresh', {
         method: 'POST',
         credentials: 'include',
@@ -12,7 +17,7 @@ async function fetchWithAuth(url, options={}) {
 
     if(!refreshResponse.ok) {
         window.location.href = '/signin';
-        throw new Error('session expired. Please log in again.');  
+        return refreshResponse;
     }
 
     const retryResponse = await fetch(url, {...options, credentials: 'include'});
