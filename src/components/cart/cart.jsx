@@ -5,35 +5,8 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 export function Cart(){
-    const {cartItems, dispatch} = useCart();
+    const {cartItems,} = useCart();
 
-    const removeitem = (id) => {
-        dispatch({
-            type: "removeItem",
-            payload: {id}
-        })
-    }
-
-    const increaseqty = (id) => {
-       dispatch({
-        type: "increaseQty",
-        payload: {id}
-       })
-    }
-
-    const decreaseqty = (id) => {
-       dispatch({
-        type: "decreaseQty",
-        payload: {id}
-       })
-    }
-
-    const updateQuantity = (id, newQty) => {
-        dispatch({
-            type: "updateQty",
-            payload: { id, qty: newQty }
-        });
-    }
 
     const subtotal = (item) => {
         const result = item.price * item.qty;

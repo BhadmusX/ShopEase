@@ -1,17 +1,18 @@
 import { useState } from "react";
-import addToCart from "../utils/addToCart";
+import fetchFromDb from "../utils/fetchFromDb";
 const useAddToCart = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
+  const [cartloading, setLoading] = useState(false);
+  const [carterror, setError] = useState(null);
 
   const addtocart = async(productId, qty=1) => {
     setLoading(true)
     setError(null);
     try{
-        const result = await addToCart(productId, qty);
-        setData(result);
-        return result;
+         await fetchFromDb('http://localhost:5000/cart/create', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({productId:productId, qty:qty})
+        })
     }catch(err){
         setError(err.message);
         throw err
@@ -20,7 +21,7 @@ const useAddToCart = () => {
     }
   };
 
-  return {addtocart, loading, error, data};
+  return {addtocart, cartloading, carterror};
 };
 
 export default useAddToCart;

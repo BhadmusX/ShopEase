@@ -1,18 +1,22 @@
 import styles from '../products/products.module.css';
 import ProductCard from "../productCard/productCard.jsx";
-import useFetchProductFromDb from '../../hooks/fetchProductFromDb.js';
+import useFetchProducts from '../../hooks/useFetchproducts.jsx';
+import { useEffect } from 'react';
 
 export default function Products() {
-  const [loading, error, products] = useFetchProductFromDb();
-  const productList = Array.isArray(products) ? products : [];
-  console.log(productList);
+  const {fetchProduct, productData, productError, productLoading} = useFetchProducts();
+  const productList = Array.isArray(productData) ? productData : [];
 
-  if (loading) {
+  useEffect(() => {
+    fetchProduct();
+  }, [fetchProduct]);
+
+  if (productLoading) {
     return <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div>;
   }
 
-  if (error) {
-    return <p>Something went Wrong: {error.message}</p>;
+  if (productError) {
+    return <p>Something went Wrong: {productError.message}</p>;
   }
 
   return (
