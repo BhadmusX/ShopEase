@@ -50,9 +50,11 @@
     background-color: #005236;
     color: white;
     border: none;
-    padding: 9px 16px;
+    padding: 7px 20px;
     border-radius: 10px;  
-    text-align: center;
+    text-align: center; 
+    max-width: 100%;
+    width: auto;
 }
 .heroImg{
   width: 100%;
@@ -66,6 +68,38 @@
     width: 100%;
     object-fit: cover;
     object-position: 30% 50%;
+}
+.CTAContainer{
+    width: 100%;
+    border-bottom: 2px solid #565E74;
+    box-sizing: border-box;
+    display: flex;
+    padding: 10px 0;
+}
+.reviewContainer{
+     font-size: clamp(0.6rem, 3vw, 1.5rem);
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.reviewContainer div:not(:last-child) {
+  border-right: 1px solid #565E74;
+  padding-right: 10px;
+}
+.reviewTextContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+.reviewTextContainer span{
+    color: #565E74;
+}
+.reviewTextContainer svg{
+   width: 1em;
+  height: 1em; 
 }
 .whyShop{
     background-color: #EEF0FF;

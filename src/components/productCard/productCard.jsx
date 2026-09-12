@@ -3,6 +3,8 @@ import styles from '../productCard/productCard.module.css'
 import { useState } from "react";
 import { useCart } from "../../hooks/useCart.js";
 import { Plus, Minus, ShoppingCart, Heart} from "lucide-react";
+import useAddToCart from '../../hooks/useAddToCart.js';
+import toast from 'react-hot-toast';
 
 export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
@@ -11,12 +13,15 @@ export default function ProductCard({ product }) {
     const increment = () => setQty((prev) => prev + 1);
     const decrement = () => setQty((prev) => Math.max(1, prev - 1));
 
-    const handleAddToCart = () => {
-        dispatch({
-            type: "addToCart",
-            payload: { ...product, qty }
-        });
-        setQty(1);
+    const {loading, error, addtocart} = useAddToCart();
+
+    const handleAddToCart = async () => {
+        try{
+        await addtocart(product.id || product._id, qty ); 
+        toast.success('Added to cart') 
+        }catch{
+            toast.error(error)
+        } 
     };
 
     const addtowish = (item, qty) => {
@@ -45,7 +50,7 @@ export default function ProductCard({ product }) {
                     <button className={styles.btn} type="button" onClick={increment}><Plus size={20}/></button>
                 </div>
                 <div className={styles.addbtnContainer}>
-                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button> <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={() => addtowish(product, product.qty)}/> </div>
+                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>{loading ? "Adding" : "Add"}</button> <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={() => addtowish(product, product.qty)}/> </div>
                 </div>
                 </div>
             </div>
