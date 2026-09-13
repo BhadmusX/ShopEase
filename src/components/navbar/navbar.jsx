@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react"; 
 import logo from "../../assert/shopease-logo.svg"
 import { useCart } from "../../hooks/useCart";
+import useWish from "../../hooks/useWish";
 export const Navbar = () => {
   
     const [isHamOpen, setHamOpen] = useState(false);
@@ -13,6 +14,7 @@ export const Navbar = () => {
     }
 
     const {cartCount} = useCart();
+    const {wishCount} = useWish();
 
 
    
@@ -23,10 +25,10 @@ export const Navbar = () => {
             <div className={styles.navContainer}>
                 <div className={styles.navIcons}>
                     <NavLink to="/wishlist" className={styles.iconLink}>
-                        {/* <Heart size={25} className={styles.navIcon}/><span className={wishItems.length > 0 && styles.itemsLength}>{wishItems.length > 0 && wishItems.length}</span> */}
+                    <Heart size={25} className={styles.navIcon}/><span className={wishCount> 0 && styles.itemsLength}>{wishCount> 0 && wishCount}</span>
                     </NavLink>
                     <NavLink to="/cart" className={styles.iconLink}>
-                        <ShoppingCart size={25} className={styles.navIcon}/><span className={cartCount > 0 && styles.itemsLength}>{cartCount > 0 && cartCount }</span>
+                        <ShoppingCart size={25} className={styles.navIcon}/><span className={cartCount > 0 && styles.itemsLength}>{cartCount > 0 && cartCount}</span>
                     </NavLink>
                 </div>
 

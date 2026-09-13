@@ -1,5 +1,5 @@
-import { useEffect,useState } from "react";
-import { cartContext } from "./cartContext";
+import { useCallback, useEffect,useState } from "react";
+import { cartContext } from "./cartContext.jsx";
 import fetchFromDb from "../utils/fetchFromDb";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,8 +16,17 @@ export const CartProvider = ({children}) => {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({productId:productId, qty:qty})
-        })
-        await getCartItems();
+        });
+         setCartItems(prev => {
+          const exist = prev.find(i => i.productId._id === productId);
+          if(exist){
+           return prev.map(i => {
+            return i.productId._id === productId ? {...i, qty: i.qty + qty }: i;
+           })
+          }
+          return [...prev, {productId, qty}];
+
+        });
     }catch(err){
         setError(err.message);
         throw err
@@ -26,18 +35,18 @@ export const CartProvider = ({children}) => {
     }
   };
 
-  const getCartItems = async () => {
+  const getCartItems = useCallback(async () => {
     try{
     const response = await fetchFromDb(`${API_URL}/cart/get`);
     setCartItems(response);
     }catch(err){
         setError(err.message);
     }
-  }
+  }, [])
 
   useEffect(() => {
     getCartItems();
-  }, []);
+  }, [getCartItems]);
 
   const cartCount = cartItems.reduce((total, item) => total + item.qty, 0);
 
