@@ -24,7 +24,7 @@ async function fetchWithAuth(url, options ={}){
     }
 
     if(url.includes('/refresh') || config._retry) {
-        throw new Error('session expired');
+        throw new Error('auth:session-expired');
     }
 
     config._retry = true;

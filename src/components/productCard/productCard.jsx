@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
     const {addtocart, cartloading, carterror} = useCart();
     const {addToWish, removeFromWish, wishListIds, setWishListIds} = useWish();
-    const productId = String(product.id);
+    const productId = String(product.productId ?? product.id ?? product._id);
 
     const isWishListed = wishListIds.has(productId);
 
@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
 
     const handleAddToCart = async () => {
         try{
-        await addtocart(productId, qty ); 
+        await addtocart(product, qty ); 
         toast.success('Item Added') 
         }catch{
             toast.error(carterror)
@@ -27,8 +27,6 @@ export default function ProductCard({ product }) {
     };
 
     const handleAddToWish = async () => {
-        const isWishListed = wishListIds.has(productId);
-
         try{
             if(isWishListed){
                 await removeFromWish(productId);
@@ -39,7 +37,7 @@ export default function ProductCard({ product }) {
             });
                 toast.success('Item Removed');
             }else{
-            await addToWish(productId);
+            await addToWish(product);
             setWishListIds(prev => new Set(prev).add(productId));
             toast.success('Item Added')
             }
@@ -52,7 +50,7 @@ export default function ProductCard({ product }) {
     return (
         <div className={styles.productContainer} key={product.id}>
             <div className={styles.imgContainer}>
-                <img className={styles.img} src={product.image} alt={product.title} />
+                <img className={styles.img} src={product.imageUrl || product.image} alt={product.title} />
             </div>
             <div className={styles.infoContainer}>
                 <div className={styles.info}> 

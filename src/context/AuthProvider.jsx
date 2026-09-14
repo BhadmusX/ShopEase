@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthContext from "./AuthContext.jsx";
+import fetchWithAuth from "../api/fetchwithAuth.js";
 
 export default function AuthProvider ({children}){
     const [user, setUser] = useState(null);
@@ -10,7 +11,7 @@ export default function AuthProvider ({children}){
         const getMe = async() => {
             try{
                 setLoading(true);
-                const response = await fetch('http://localhost:5000/getme', {credentials: 'include'});
+                const response = await fetchWithAuth('http://localhost:5000/getme', {credentials: 'include'});
 
                 if(!response.ok){
                     const data = await response.json();
@@ -40,7 +41,6 @@ export default function AuthProvider ({children}){
      useEffect(() => {
         function handleSessionExpired() {
             logOut();
-            window.location.href = '/signin';
         }
 
         window.addEventListener('auth:session-expired', handleSessionExpired);

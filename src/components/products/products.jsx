@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 export default function Products() {
   const {fetchProduct, productData, productError, productLoading} = useFetchProducts();
+  console.log(productData);
   const productList = Array.isArray(productData) ? productData : [];
 
   useEffect(() => {

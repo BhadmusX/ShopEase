@@ -4,14 +4,15 @@ import WishItems from '../../components/wishItems/wishItems.jsx'
 import styles from '../wishListPage/wishList.module.css';
 import { useCart } from "../../hooks/useCart.js";
 import { EmptyWish } from "../../components/emptyWishList/emptyWishList.jsx";
+import useWish from "../../hooks/useWish.jsx";
 export default function WishList(){
-    const {wishItems} = useCart();
+    const {wishData, wishLoading, wishError} = useWish();
     return(
 
         <div className={styles.appWrapper}>
             <div><Navbar/></div>
             <div className={styles.main}>
-                {wishItems.length === 0 ? <EmptyWish/> : 
+                {wishData.length === 0 ? <EmptyWish/> : 
                  <div className={styles.container}>
                      <div className={styles.textContainer}>
                 <h1 className={styles.headerText}>Your WishList</h1>
