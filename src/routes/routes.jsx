@@ -7,6 +7,7 @@ import { ErrorPage } from "../pages/errorPage/errorpage.jsx";
 import SignUpPage from "../pages/signupPage/signupPage.jsx";
 import SignInPage from "../pages/signinPage/signinPage.jsx";
 import ProtectedRoute from "./protectedroute.jsx";
+import SucessPage from "../pages/successPage/success.jsx";
 const router = createBrowserRouter([
 
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
              {
         path: "shop",
         element: <ShopPage/>,
+    },
+    {
+        path: 'purchase-success',
+        element: <SucessPage/>
     },
     {
         path: "cart",

@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 export function Cart(){
-    const {cartItems, removeCartItem} = useCart();
+    const {cartItems, removeCartItem, checkOut} = useCart();
 
 
     const subtotal = (item) => {
@@ -15,6 +15,10 @@ export function Cart(){
 
     const removeCartitem = (cartId) => {
         removeCartItem(cartId);
+    }
+
+    const checkOutItems = () => {
+        checkOut();
     }
 
     const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -68,7 +72,7 @@ export function Cart(){
                 <div className={styles.total}><h1 className={styles.totalText}>Total</h1> <p className={styles.totalPrice}>${total.toFixed(2)}</p></div>
 
                 <div className={styles.checkoutBtnContainer}>
-                    <button className={styles.checkoutBtn} onClick={() => setShowModal(true)}>Proceed to Checkout</button>
+                    <button className={styles.checkoutBtn} onClick={checkOutItems}>Proceed to Checkout</button>
                     <Link to="/shop" className={styles.continueShopping}>Continue Shopping</Link></div>
             </div>
         </div>

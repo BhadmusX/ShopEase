@@ -72,11 +72,20 @@ export const CartProvider = ({children}) => {
     getCartItems();
   }, [authLoading, getCartItems, user]);
 
+  const checkOut = async () => {
+    const session = await fetchFromDb(`${API_URL}/payment/checkoutsession`, {
+      method: 'POST', 
+      body: JSON.stringify({products: cartItems}),
+      headers: {'Content-Type': "application/json"}
+    });
+    window.location.href = session.url;
+  }
+
   const cartCount = cartItems.reduce((total, item) => total + item.qty, 0);
 
 
     return (
-        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem}}>
+        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut}}>
         {children}
         </cartContext.Provider>
     );
