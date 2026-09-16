@@ -1,10 +1,11 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import styles from '../navbar/navbar.module.css';
 import { useState } from "react";
 import { Heart, ShoppingCart } from "lucide-react"; 
 import logo from "../../assert/shopease-logo.svg"
 import { useCart } from "../../hooks/useCart";
 import useWish from "../../hooks/useWish";
+import useAuth from "../../hooks/useAuth";
 export const Navbar = () => {
   
     const [isHamOpen, setHamOpen] = useState(false);
@@ -15,7 +16,13 @@ export const Navbar = () => {
 
     const {cartCount} = useCart();
     const {wishCount} = useWish();
+    const {logOut} = useAuth();
+    const navigate = useNavigate();
 
+    const logout = () => {
+        logOut();
+        navigate('/signin', {replace: true})
+    }
 
    
     return(
@@ -40,9 +47,13 @@ export const Navbar = () => {
 
                 <div className={isHamOpen ? styles.activeOverlay : styles.overlay} onClick={() => setHamOpen(false)}>
                     <div className={`${styles.nav} ${isHamOpen ? styles.activeNav : styles.Nav}`}>
-                    <div className={styles.logoContainer}><img className={styles.logo}src={logo} alt="ShopEase" /></div>
+                    <div className={styles.navUpperContainer}>
+                        <div className={styles.logoContainer}><img className={styles.logo}src={logo} alt="ShopEase" /></div>
                     <NavLink to="/" onClick={() => setHamOpen(false)} className={styles.navlink}>Home</NavLink>
                     <NavLink to='/shop' onClick={() => setHamOpen(false)} className={styles.navlink}>Shop</NavLink>
+                    </div>
+
+                    <div className={styles.navLowerContainer}><button className={styles.logOutBtn} onClick={() => logout()}>LogOut</button></div>
                     </div>
                 </div>  
 

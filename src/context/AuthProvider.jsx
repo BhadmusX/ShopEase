@@ -34,7 +34,7 @@ export default function AuthProvider ({children}){
     }, []);
 
     const logOut = async() => {
-        await fetch('http://localhost:5000/signout', {credentials: 'include'});
+        await fetch('http://localhost:5000/signout', {method: "POST", credentials: 'include'});
         setUser(null);
     }
 

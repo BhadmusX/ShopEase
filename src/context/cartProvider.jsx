@@ -81,11 +81,23 @@ export const CartProvider = ({children}) => {
     window.location.href = session.url;
   }
 
+  const clearCart = async () => {
+    try{
+    await fetchFromDb(`${API_URL}/cart/delete`, {
+      method: 'DELETE',
+      headers: {'Content-Type' : "appplication/json"}
+    });
+    setCartItems([]);
+  }catch(err){
+    throw err
+  }
+  }
+
   const cartCount = cartItems.reduce((total, item) => total + item.qty, 0);
 
 
     return (
-        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut}}>
+        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut, clearCart}}>
         {children}
         </cartContext.Provider>
     );
