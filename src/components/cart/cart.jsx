@@ -5,7 +5,9 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 export function Cart(){
-    const {cartItems, removeCartItem, checkOut} = useCart();
+    const {cartItems, removeCartItem, checkOut, updateCartQuantity} = useCart();
+    const [qty, setQty] = useState();
+
 
 
     const subtotal = (item) => {
@@ -24,6 +26,15 @@ export function Cart(){
     const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
 
     const [showModal, setShowModal] = useState(false);
+
+    const decreaseqty = (qty, id) => {
+        updateCartQuantity(qty, id);
+    }
+
+    const increaseqty = (qty, id) => {
+        console.log(id);
+        updateCartQuantity(qty, id);
+    }
 
 
 
@@ -49,9 +60,9 @@ export function Cart(){
 
                             <div className={styles.itemBottomContainer}>
                                  <div className={styles.btnContainer}>
-                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.id)}><Minus size={20}/></button>
+                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.qty - 1, item.id || item._id)}><Minus size={20}/></button>
                                        <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateQuantity(item.id, Math.max(1, Number(e.target.value)))}/>
-                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.id)}><Plus size={20}/></button>
+                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.qty + 1,  item.id || item._id)}><Plus size={20}/></button>
                                  </div>
                                  <div><button className={styles.removeBtn} onClick={() => removeCartitem(item._id)}><Trash size={20}/>Remove</button></div>
                             </div>

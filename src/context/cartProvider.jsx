@@ -93,11 +93,29 @@ export const CartProvider = ({children}) => {
   }
   }
 
+  const updateCartQuantity = async (qty, id) => {
+    try{
+      await fetchFromDb(`${API_URL}/cart/update/${id}`, {
+        method:'PUT',
+        headers: {'Content-Type':"application/json"},
+        body: JSON.stringify({qty: qty})
+      });
+
+      setCartItems(prev => prev.map(i => {
+        console.log(i)
+        return i._id === id ? {...i, qty: qty} : i      }))
+    }catch(err){
+      throw err
+    }
+  };
+
+
+
   const cartCount = cartItems.reduce((total, item) => total + item.qty, 0);
 
 
     return (
-        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut, clearCart}}>
+        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut, clearCart, updateCartQuantity}}>
         {children}
         </cartContext.Provider>
     );
