@@ -8,6 +8,7 @@ import SignUpPage from "../pages/signupPage/signupPage.jsx";
 import SignInPage from "../pages/signinPage/signinPage.jsx";
 import ProtectedRoute from "./protectedroute.jsx";
 import SucessPage from "../pages/successPage/success.jsx";
+import AdminDashboard from "../admin/pages/admindashboard/admindashboard.jsx";
 const router = createBrowserRouter([
 
     {
@@ -44,6 +45,15 @@ const router = createBrowserRouter([
         path: "wishlist",
         element: <WishList/>,
     }, 
+        ]
+    },
+    {
+        element: <ProtectedRoute adminOnly={true}/>,
+        children: [
+            {
+                path: "admin",
+                element: <AdminDashboard/>
+            }
         ]
     },
     {

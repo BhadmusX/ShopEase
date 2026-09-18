@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.appWrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 20px;
+}
+.heroText{
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-family: sans-serif;
+
+}
+
+.heroBtnContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+}
+.heroLink{
+   display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 5px;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-weight: 500;
+}
+.heroBtnText{
+    font-family: sans-serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+}
