@@ -9,6 +9,8 @@ import SignInPage from "../pages/signinPage/signinPage.jsx";
 import ProtectedRoute from "./protectedroute.jsx";
 import SucessPage from "../pages/successPage/success.jsx";
 import AdminDashboard from "../admin/pages/admindashboard/admindashboard.jsx";
+import CreateProductPage from "../admin/pages/createProductPage/createProductPage.jsx";
+import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
 const router = createBrowserRouter([
 
     {
@@ -52,7 +54,21 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "admin",
-                element: <AdminDashboard/>
+                element: <AdminDashboard/>,
+                children: [
+                    {
+                        index: true,
+                        element: <ProductsPage/>
+                    },
+                    {
+                        path: 'Products',
+                        element: <ProductsPage/>
+                    },
+                    {
+                        path: "products/create",
+                        element: <CreateProductPage/>
+                    }
+                ]
             }
         ]
     },

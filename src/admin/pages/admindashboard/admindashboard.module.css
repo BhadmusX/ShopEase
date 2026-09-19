@@ -14,25 +14,37 @@
     flex: 1;
     padding: 0 20px;
 }
+.container{
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .heroText{
     font-size: clamp(1.2rem, 4vw, 1.8rem);
     font-family: sans-serif;
-
+    color: #005236;
 }
 
 .heroBtnContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 7px;
+    gap: 10px;
+    justify-content: space-around;
 }
 .heroLink{
    display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center; 
     gap: 5px;
     font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 500;
+    font-weight: 600;
+}
+.heroLink:active{
+    color: white;
+    background-color: #005236;
+
 }
 .heroBtnText{
     font-family: sans-serif;
