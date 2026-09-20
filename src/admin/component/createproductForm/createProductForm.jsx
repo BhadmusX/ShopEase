@@ -1,59 +1,70 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from '../createproductForm/createProductForm.module.css'
 import fetchWithAuth from "../../../api/fetchwithAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
-const CreateproductForm = () => {
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState("");
-    const [category, setCategory] = useState("Clothing");
-    const [imageUrl, setImageUrl] = useState("");
-    const [loading, setLoading] = useState(false);
+const CreateproductForm = ({initialValues = {title: '', price: '', category: '', imageUrl: null }, onSubmit, isEditing = false}) => {
+    // const [title, setTitle] = useState("");
+    // const [price, setPrice] = useState("");
+    // const [category, setCategory] = useState("Clothing");
+    // const [imageUrl, setImageUrl] = useState("");
+    // const [loading, setLoading] = useState(false);
 
-    const API_URL = import.meta.env.VITE_API_URL;
-    const navigate = useNavigate();
+    // const API_URL = import.meta.env.VITE_API_URL;
+    // const navigate = useNavigate();
 
-    // let formdata = new FormData();
-    // formdata.append("title", title);
-    // formdata.append("category", category);
-    // formdata.append("imageUrl", imageUrl);
-    // formdata.append("price", price);
+    // // let formdata = new FormData();
+    // // formdata.append("title", title);
+    // // formdata.append("category", category);
+    // // formdata.append("imageUrl", imageUrl);
+    // // formdata.append("price", price);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-        let formdata = new FormData();
-        formdata.append("title", title);
-        formdata.append("category", category);
-        formdata.append("imageUrl", imageUrl);
-        formdata.append("price", price);
-        try{
-            setLoading(true);
-            const response = await fetchWithAuth(`${API_URL}/product/create`, {
-                method: 'POST',
-                body: formdata
-            });
+    //     let formdata = new FormData();
+    //     formdata.append("title", title);
+    //     formdata.append("category", category);
+    //     formdata.append("imageUrl", imageUrl);
+    //     formdata.append("price", price);
+    //     try{
+    //         setLoading(true);
+    //         const response = await fetchWithAuth(`${API_URL}/product/create`, {
+    //             method: 'POST',
+    //             body: formdata
+    //         });
 
-            const data = await response.json();
+    //         const data = await response.json();
 
-            if(!response.ok){
-                throw new Error(data.message || 'Failed to create product');
-            }
+    //         if(!response.ok){
+    //             throw new Error(data.message || 'Failed to create product');
+    //         }
 
-            toast.success(data.message);
-            setTitle('');
-            setImageUrl('');
-            setPrice('');
-            navigate('/admin/products');
+    //         toast.success(data.message);
+    //         setTitle('');
+    //         setImageUrl('');
+    //         setPrice('');
+    //         navigate('/admin/products');
 
-        }catch(err){
-            toast.error(err.message)
-        }finally{
-            setLoading(false)
-        }
-    }
-    const handleCancel = () => {
-        navigate('/admin/products');
+    //     }catch(err){
+    //         toast.error(err.message)
+    //     }finally{
+    //         setLoading(false)
+    //     }
+    // }
+    // const handleCancel = () => {
+    //     navigate('/admin/products');
+    // }
+
+    const [formData, setFormData] = useState(initialValues);
+
+    useEffect(() => {
+        setFormData(initialValues);
+    }, [initialValues]);
+
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setFormData(prev => ({...prev, [name]: value}))
     }
     return(
         <div>

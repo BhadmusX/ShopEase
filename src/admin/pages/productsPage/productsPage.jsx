@@ -1,30 +1,38 @@
 import { useEffect } from "react";
-import useFetchProducts from "../../../hooks/useFetchproducts";
 import ProductCard from "../../component/productCard/adminProductCard";
+import useFetchproduct from "../../../hooks/useFetchProduct";
+import styles from '../productsPage/productsPage.module.css'
+import { Link } from "react-router";
+import { Plus } from "lucide-react";
 
 const ProductsPage = () => {
-    const {fetchProduct, productError, productData, productLoading} = useFetchProducts();
+const {fetchproduct, loading, products, removeproduct} = useFetchproduct();
 
     useEffect(() => {
-        fetchProduct();
-    }, [fetchProduct]);
+        fetchproduct();
+    }, [fetchproduct]);
 
-    if (productLoading) {
-        return <p>Loading products...</p>;
-    }
-
-    if (productError) {
-        return <p>Something went wrong: {productError}</p>;
-    }
-
+    console.log(products);
     return(
-        <div>
-            {
-                productData.map(prod => {
-                    return <ProductCard key={prod.id} product={prod}/>;
-                })
+        <>
+            {loading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div>:
+            <div>
+                <div className={styles.productHeader}>
+                    <div className={styles.headerInfo}>
+                        <h1>Products</h1>
+                        <p>{products.length} products</p>
+                    </div>
+
+                    <div className={styles.headerBtnContainer}>
+                        <Link className={styles.headerBtn} to='/admin/products/create'><Plus size={20} />Add Product</Link>
+                    </div>
+                </div>
+                {products.map(prod => {
+                    return <ProductCard key={prod.id} product={prod} removeproduct={removeproduct}/>;
+                })}
+            </div>
             }
-        </div>
+        </>
     )
 }
 

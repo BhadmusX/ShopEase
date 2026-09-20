@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import fetchFromDb from "../utils/fetchFromDb";
-
+const API_URL = import.meta.env.VITE_API_URL;
 const useFetchProducts = () => {
      const [productData, setData] = useState([]);
     const [productError, setError] = useState(null);
@@ -10,7 +10,7 @@ const useFetchProducts = () => {
         setLoading(true);
         setError(null);
         try{
-             const response = await fetchFromDb('http://localhost:5000/product/get');
+             const response = await fetchFromDb(`${API_URL}/product/combined/get`);;
         setData(response);
         return;
         }catch(err){

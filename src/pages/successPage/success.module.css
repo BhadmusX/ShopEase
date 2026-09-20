@@ -69,3 +69,11 @@ a{
     font-size: clamp(1.2rem, 3vw, 2rem);
     font-family: sans-serif;
 }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
