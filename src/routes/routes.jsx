@@ -11,6 +11,7 @@ import SucessPage from "../pages/successPage/success.jsx";
 import AdminDashboard from "../admin/pages/admindashboard/admindashboard.jsx";
 import CreateProductPage from "../admin/pages/createProductPage/createProductPage.jsx";
 import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
+import EditProductPage from "../admin/pages/editProductPage/editProductPage.jsx";
 const router = createBrowserRouter([
 
     {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
                     {
                         path: "products/create",
                         element: <CreateProductPage/>
+                    },
+                    {
+                        path: 'products/edit/:id',
+                        element: <EditProductPage/>
                     }
                 ]
             }

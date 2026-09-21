@@ -14,7 +14,7 @@ const ProductCard = ({product, removeproduct}) => {
 
                         <div className={styles.upperCardRightContainer}>
                             <div className={styles.btnContainer}>
-                                <Link><Pencil size={20}/></Link> 
+                                <Link to={`/admin/products/edit/${product.id}`}><Pencil size={20}/></Link> 
                             </div>
                             <div className={styles.delbtnContainer}>
                                 <button className={styles.delBtn} onClick={() => removeproduct(product.id)}><Trash size={20}/></button>

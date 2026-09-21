@@ -1,71 +1,55 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import styles from '../createproductForm/createProductForm.module.css'
-import fetchWithAuth from "../../../api/fetchwithAuth";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
-const CreateproductForm = ({initialValues = {title: '', price: '', category: '', imageUrl: null }, onSubmit, isEditing = false}) => {
-    // const [title, setTitle] = useState("");
-    // const [price, setPrice] = useState("");
-    // const [category, setCategory] = useState("Clothing");
-    // const [imageUrl, setImageUrl] = useState("");
-    // const [loading, setLoading] = useState(false);
+const API_URL = import.meta.env.VITE_API_URL;
+const CreateproductForm = ({
+    initialValues = {},
+    onSubmit,
+    onCancel,
+    submitLabel = "Save Product",
+}) => {
+    const [title, setTitle] = useState(initialValues.title || "");
+    const [price, setPrice] = useState(initialValues.price || "");
+    const [category, setCategory] = useState(initialValues.category || "clothing");
+    const [imageUrl, setImageUrl] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    // const API_URL = import.meta.env.VITE_API_URL;
-    // const navigate = useNavigate();
+    const preview = useMemo(
+        ()=> {
+            if(imageUrl){
+                return URL.createObjectURL(imageUrl)
+            }
+            if(initialValues?.imageUrl){
+              return `${API_URL}/${initialValues?.imageUrl}`  
+            }
 
-    // // let formdata = new FormData();
-    // // formdata.append("title", title);
-    // // formdata.append("category", category);
-    // // formdata.append("imageUrl", imageUrl);
-    // // formdata.append("price", price);
+            return null;
+        },
+        [imageUrl, initialValues]
+    );
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
+    useEffect(()=> {
+        return () => {
+            if(imageUrl) URL.revokeObjectURL(preview);
+        };
+    }, [imageUrl, preview]);
 
-    //     let formdata = new FormData();
-    //     formdata.append("title", title);
-    //     formdata.append("category", category);
-    //     formdata.append("imageUrl", imageUrl);
-    //     formdata.append("price", price);
-    //     try{
-    //         setLoading(true);
-    //         const response = await fetchWithAuth(`${API_URL}/product/create`, {
-    //             method: 'POST',
-    //             body: formdata
-    //         });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    //         const data = await response.json();
+        let formdata = new FormData();
+        formdata.append("title", title);
+        formdata.append("category", category);
+        formdata.append("price", price);
 
-    //         if(!response.ok){
-    //             throw new Error(data.message || 'Failed to create product');
-    //         }
+        if(imageUrl) formdata.append('imageUrl', imageUrl);
 
-    //         toast.success(data.message);
-    //         setTitle('');
-    //         setImageUrl('');
-    //         setPrice('');
-    //         navigate('/admin/products');
-
-    //     }catch(err){
-    //         toast.error(err.message)
-    //     }finally{
-    //         setLoading(false)
-    //     }
-    // }
-    // const handleCancel = () => {
-    //     navigate('/admin/products');
-    // }
-
-    const [formData, setFormData] = useState(initialValues);
-
-    useEffect(() => {
-        setFormData(initialValues);
-    }, [initialValues]);
-
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setFormData(prev => ({...prev, [name]: value}))
-    }
+        try{
+            setLoading(true);
+            await onSubmit(formdata);
+        }finally{
+            setLoading(false);
+        }
+    };
     return(
         <div>
             <form className={styles.form} onSubmit={handleSubmit}>
@@ -105,15 +89,23 @@ const CreateproductForm = ({initialValues = {title: '', price: '', category: '',
                 </label>
 
                  <label htmlFor="image">
+                    Image
+                    {preview  &&(
+                        <img
+                        src={preview}
+                        alt="Product Preview"
+                        className={styles.preview}
+                        />
+                    )}
                     <input type="file"
                     className={styles.input}
                     name="file"
                     id="image"
-                    onChange={(e) => setImageUrl(e.target.files[0])}/>
+                    onChange={(e) => setImageUrl(e.target.files[0] ?? null)}/>
                 </label>
                 <div className={styles.btnContainer}>
-                    <button className={styles.cancelBtn} type="button" onClick={handleCancel}>Cancel</button>
-                    <button className={styles.saveBtn} type="submit">{loading? "Saving" : "Save product"}</button>
+                    <button className={styles.cancelBtn} type="button" onClick={onCancel}>Cancel</button>
+                    <button className={styles.saveBtn} type="submit" disabled={loading}>{loading? "Saving" : submitLabel}</button>
                 </div>
             </form>
         </div>
