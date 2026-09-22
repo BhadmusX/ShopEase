@@ -8,7 +8,7 @@ import useWish from '../../hooks/useWish.jsx';
 
 export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
-    const {addtocart, cartloading, carterror} = useCart();
+    const {addtocart, loadingProductId, carterror} = useCart();
     const {addToWish, removeFromWish, wishListIds, setWishListIds} = useWish();
     const productId = String(product.productId ?? product.id ?? product._id);
 
@@ -62,7 +62,7 @@ export default function ProductCard({ product }) {
                     <button className={styles.btn} type="button" onClick={increment}><Plus size={20}/></button>
                 </div>
                 <div className={styles.addbtnContainer}>
-                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>{cartloading ? "Adding" : "Add"}</button> 
+                    <button className={styles.addbtn} onClick={handleAddToCart} disabled={loadingProductId === productId}><ShoppingCart size={20}/>{loadingProductId === productId ? "Adding" : "Add"}</button> 
                     <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={handleAddToWish}/> </div>
                 </div>
                 </div>

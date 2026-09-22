@@ -90,7 +90,7 @@ position: fixed;
   gap: 24px;
 }
 .navLowerContainer{
-    padding: 70vh 0;
+    margin-top: auto;
 }
 .logOutBtn{
      font-size: clamp(1.1rem, 3vw, 1.3rem);

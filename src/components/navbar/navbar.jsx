@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     const {cartCount} = useCart();
     const {wishCount} = useWish();
-    const {logOut} = useAuth();
+    const {logOut, user} = useAuth();
     const navigate = useNavigate();
 
     const logout = () => {
@@ -51,6 +51,7 @@ export const Navbar = () => {
                         <div className={styles.logoContainer}><img className={styles.logo}src={logo} alt="ShopEase" /></div>
                     <NavLink to="/" onClick={() => setHamOpen(false)} className={styles.navlink}>Home</NavLink>
                     <NavLink to='/shop' onClick={() => setHamOpen(false)} className={styles.navlink}>Shop</NavLink>
+                    {user?.role === 'admin' && <NavLink to='/admin' onClick={() => setHamOpen(false)} className={styles.navlink}>Admin Dashboard</NavLink>}
                     </div>
 
                     <div className={styles.navLowerContainer}><button className={styles.logOutBtn} onClick={() => logout()}>LogOut</button></div>

@@ -6,20 +6,21 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export const CartProvider = ({children}) => {
   const { user, loading: authLoading } = useAuth();
-    const [cartloading, setLoading] = useState(false);
+    const [loadingProductId, setLoadingProductId] = useState(null);
   const [carterror, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
   const addtocart = async(product, qty=1) => {
     console.log(product);
-    setLoading(true)
+    const productId = String(product.id ?? product.productId ?? product._id);
+    setLoadingProductId(productId);
     setError(null);
     try{
          await fetchFromDb(`${API_URL}/cart/create`, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            productId: product.id,
+            productId,
             title: product.title,
             category: product.category,
             price: product.price,
@@ -28,10 +29,10 @@ export const CartProvider = ({children}) => {
           })
         });
          setCartItems(prev => {
-          const exist = prev.find(i => i.productid === product.id);
+          const exist = prev.find(i => String(i.productId) === productId);
           if(exist){
            return prev.map(i => {
-            return i.productId === product.id ? {...i, qty: i.qty + qty }: i;
+            return String(i.productId) === productId ? {...i, qty: i.qty + qty }: i;
            })
           }
           return [...prev, {...product, qty}];
@@ -41,7 +42,7 @@ export const CartProvider = ({children}) => {
         setError(err.message);
         throw err
     }finally{
-        setLoading(false);
+      setLoadingProductId(null);
     }
   };
 
@@ -115,7 +116,7 @@ export const CartProvider = ({children}) => {
 
 
     return (
-        <cartContext.Provider value={{cartloading, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut, clearCart, updateCartQuantity}}>
+        <cartContext.Provider value={{loadingProductId, carterror, cartCount, getCartItems, addtocart, cartItems, removeCartItem, checkOut, clearCart, updateCartQuantity}}>
         {children}
         </cartContext.Provider>
     );

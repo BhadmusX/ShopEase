@@ -1,10 +1,12 @@
 import { Pencil, Trash } from "lucide-react"
 import { Link } from "react-router"
-import styles from '../productCard/productCard.module.css'
+import styles from '../productCard/productCard.module.css';
 const API_URL = import.meta.env.VITE_API_URL;
+
 
 const ProductCard = ({product, removeproduct}) => {
     return(
+        <>
                 <div className={styles.productCard}>
                     <div className={styles.upperCard}>
                         <div className={styles.upperCardLeftContainer}>
@@ -34,6 +36,7 @@ const ProductCard = ({product, removeproduct}) => {
                         </div>
                     </div>
                 </div>
+    </>
     )
 }
 export default ProductCard;

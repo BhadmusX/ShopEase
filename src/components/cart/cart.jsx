@@ -2,11 +2,9 @@ import { useCart } from "../../hooks/useCart.js"
 import { Trash, Plus, Minus } from "lucide-react";
 import styles from '../cart/cart.module.css'
 import { Link } from "react-router";
-import { useState } from "react";
 
 export function Cart(){
     const {cartItems, removeCartItem, checkOut, updateCartQuantity} = useCart();
-    const [qty, setQty] = useState();
 
 
 
@@ -25,7 +23,6 @@ export function Cart(){
 
     const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-    const [showModal, setShowModal] = useState(false);
 
     const decreaseqty = (qty, id) => {
         updateCartQuantity(qty, id);
@@ -47,7 +44,7 @@ export function Cart(){
                 <div className={styles.cartItems}>
             {
                 cartItems.map((item) => {
-                    return <div className={styles.itemContainer} key={item.id}>
+                    return <div className={styles.itemContainer} key={item._id}>
 
 
                             <div className={styles.itemTopContainer}>
@@ -60,9 +57,9 @@ export function Cart(){
 
                             <div className={styles.itemBottomContainer}>
                                  <div className={styles.btnContainer}>
-                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.qty - 1, item.id || item._id)}><Minus size={20}/></button>
-                                       <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateQuantity(item.id, Math.max(1, Number(e.target.value)))}/>
-                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.qty + 1,  item.id || item._id)}><Plus size={20}/></button>
+                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.qty - 1, item._id)}><Minus size={20}/></button>
+                                       <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateCartQuantity(Math.max(1, Number(e.target.value)), item._id)}/>
+                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.qty + 1, item._id)}><Plus size={20}/></button>
                                  </div>
                                  <div><button className={styles.removeBtn} onClick={() => removeCartitem(item._id)}><Trash size={20}/>Remove</button></div>
                             </div>
@@ -89,16 +86,6 @@ export function Cart(){
         </div>
         </div>
 
-        { showModal && ( <div className={styles.overlay} >
-    <div className={styles.modal}>
-      <h2 className={styles.successText}>Payment Successful!</h2>
-      <p className={styles.successText2}>Thank you for your order.</p>
-      
-    </div>
-  </div>)}
     </>
     )
 }
-
-// onClick={handleCloseModal}
-// <button onClick={handleCloseModal} className={styles.closeBtn}>Close</button>

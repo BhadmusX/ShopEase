@@ -12,6 +12,7 @@ import AdminDashboard from "../admin/pages/admindashboard/admindashboard.jsx";
 import CreateProductPage from "../admin/pages/createProductPage/createProductPage.jsx";
 import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
 import EditProductPage from "../admin/pages/editProductPage/editProductPage.jsx";
+import AnalyticsPage from "../admin/pages/analyticsPage/analyticsPage.jsx";
 const router = createBrowserRouter([
 
     {
@@ -59,7 +60,11 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ProductsPage/>
+                        element: <AnalyticsPage/>
+                    },
+                    {
+                        path: 'analytics',
+                        element: <AnalyticsPage/>
                     },
                     {
                         path: 'products',

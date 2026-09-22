@@ -15,7 +15,6 @@ const {fetchproduct, loading, products, removeproduct} = useFetchproduct();
     console.log(products);
     return(
         <>
-            {loading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div>:
             <div>
                 <div className={styles.productHeader}>
                     <div className={styles.headerInfo}>
@@ -27,11 +26,10 @@ const {fetchproduct, loading, products, removeproduct} = useFetchproduct();
                         <Link className={styles.headerBtn} to='/admin/products/create'><Plus size={20} />Add Product</Link>
                     </div>
                 </div>
-                {products.map(prod => {
+                { loading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div> : products.map(prod => {
                     return <ProductCard key={prod.id} product={prod} removeproduct={removeproduct}/>;
                 })}
             </div>
-            }
         </>
     )
 }

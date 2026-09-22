@@ -1,4 +1,3 @@
-import { useState } from "react";
 import CreateproductForm from "../../component/createproductForm/createProductForm";
 import styles from '../createProductPage/createProductPage.module.css'
 import fetchFromDb from "../../../utils/fetchFromDb";
