@@ -1,39 +1,56 @@
 // components/ProductCard.jsx
 import styles from '../productCard/productCard.module.css'
-import { useState } from "react";
-import { useCart } from "../../hooks/useCart.js";
+import {useState } from "react";
 import { Plus, Minus, ShoppingCart, Heart} from "lucide-react";
+import toast from 'react-hot-toast';
+import { useCart } from '../../hooks/useCart.js';
+import useWish from '../../hooks/useWish.jsx';
 
 export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
-    const { dispatch, addToWish, wishItems, removeWish} = useCart();
+    const {addtocart, loadingProductId, carterror} = useCart();
+    const {addToWish, removeFromWish, wishListIds, setWishListIds} = useWish();
+    const productId = String(product.productId ?? product.id ?? product._id);
+
+    const isWishListed = wishListIds.has(productId);
 
     const increment = () => setQty((prev) => prev + 1);
     const decrement = () => setQty((prev) => Math.max(1, prev - 1));
 
-    const handleAddToCart = () => {
-        dispatch({
-            type: "addToCart",
-            payload: { ...product, qty }
-        });
-        setQty(1);
+    const handleAddToCart = async () => {
+        try{
+        await addtocart(product, qty ); 
+        toast.success('Item Added') 
+        }catch{
+            toast.error(carterror)
+        } 
     };
 
-    const addtowish = (item, qty) => {
-        const exist = wishItems.some((i) => i.id === item.id);
-        if(exist){
-            removeWish(item);
-        } else{
-            addToWish(item, qty);
+    const handleAddToWish = async () => {
+        try{
+            if(isWishListed){
+                await removeFromWish(productId);
+                 setWishListIds(prev => {
+                const next = new Set(prev);
+                next.delete(productId);
+                return next;
+            });
+                toast.success('Item Removed');
+            }else{
+            await addToWish(product);
+            setWishListIds(prev => new Set(prev).add(productId));
+            toast.success('Item Added')
+            }
+        }
+        catch(err){
+            toast.error(err.message);
         }
     }
-
-    const isWishListed = wishItems.some((item) => item.id === product.id);
 
     return (
         <div className={styles.productContainer} key={product.id}>
             <div className={styles.imgContainer}>
-                <img className={styles.img} src={product.image} alt={product.title} />
+                <img className={styles.img} src={product.imageUrl || product.image} alt={product.title} />
             </div>
             <div className={styles.infoContainer}>
                 <div className={styles.info}> 
@@ -45,7 +62,8 @@ export default function ProductCard({ product }) {
                     <button className={styles.btn} type="button" onClick={increment}><Plus size={20}/></button>
                 </div>
                 <div className={styles.addbtnContainer}>
-                    <button className={styles.addbtn} onClick={handleAddToCart}><ShoppingCart size={20}/>Add</button> <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={() => addtowish(product, product.qty)}/> </div>
+                    <button className={styles.addbtn} onClick={handleAddToCart} disabled={loadingProductId === productId}><ShoppingCart size={20}/>{loadingProductId === productId ? "Adding" : "Add"}</button> 
+                    <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={handleAddToWish}/> </div>
                 </div>
                 </div>
             </div>

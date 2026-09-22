@@ -1,0 +1,102 @@
+.productCard{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid #005236;
+    padding: 30px 5px;
+}
+.upperCard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.upperCardLeftContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.upperCardLeftText{
+    font-family: sans-serif;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    color: #005236;
+}
+.upperCardImgContainer{
+    max-width: 100px;
+    max-height: 100px;
+    overflow: hidden;
+}
+.upperCardImg{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 7px
+}
+.upperCardRightContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.delBtn{
+    border: none;
+    background-color: white;
+    color: #005236;
+    cursor: pointer;
+    
+}
+.btnContainer{
+    border: 1px solid #005236;
+    padding: 4px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.delbtnContainer{
+   border: 1px solid #005236;
+    padding: 4px;
+    border-radius: 7px; 
+    cursor: pointer;
+}
+.delbtnContainer:hover{
+    border: 1px solid rgb(170, 55, 55);
+}
+.delbtnContainer:hover .delBtn{
+    color: rgb(170, 55, 55);
+}
+.lowerCard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.lowerCardLeft{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.categoryLabel{
+    font-family: sans-serif;
+    font-size: clamp(1rem, 3vw, 1.3rem); 
+    font-weight: 500;
+    color:#005236;  
+}
+.categoryValue{
+    font-family: sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 500;
+}
+.lowerCardRight{
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;  
+}
+.priceLabel{
+    font-family: sans-serif;
+    font-size: clamp(1rem, 3vw, 1.3rem); 
+    font-weight: 600;
+    color:#005236;  
+}
+.priceValue{
+    font-family: sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 500;
+}

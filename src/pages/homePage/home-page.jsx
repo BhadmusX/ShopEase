@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Navbar } from "../../components/navbar/navbar";
 import { Footer } from "../../components/footer/footer";
 import styles from '../homePage/homePage.module.css';
-import { Truck, BadgeCheck, PackageCheck } from "lucide-react";
+import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck } from "lucide-react";
 import logo from '../../assert/shopImage.jpg'
 export default function Homepage (){
     return (
@@ -15,7 +15,21 @@ export default function Homepage (){
                         <h1 className={styles.heroHeader}>Modern Essentials for Your Everyday</h1>
                     <p className={styles.heroText}>Discover our curated collection of high-quality products designed to elevate your lifestyle. Clean lines, premium materials, and unparalleled craftsmanship.</p>
 
-                    <div><Link to="/shop" className={styles.heroBtn}>Shop Now</Link></div>
+                    <div className={styles.CTAContainer}><Link to="/shop" className={styles.heroBtn}>Shop Now</Link></div>
+
+                    <div>
+
+                    </div>
+                    <div className={styles.reviewContainer}>
+                        <div className={styles.reviewTextContainer}><Star size={15} style={{color: "#005236"}}></Star> 
+                        <div>
+                            <p>4.8 / 5 <span>(2,000+ Reviews)</span></p>
+                        </div> 
+                        </div>
+
+                        <div className={styles.reviewTextContainer}><ShieldCheck size={15} style={{color: "#005236"}}></ShieldCheck> 
+                        <div><p>Certified Sustainable</p></div></div>
+                        </div>
                     </div>
                      <div className={styles.heroImg}><img className={styles.img} src={logo} alt="Shop image" /></div>
                      </div>

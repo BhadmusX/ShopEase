@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import AuthContext from "./AuthContext";
-import fetchWithAuth from "../api/fetchwithAuth";
+import AuthContext from "./AuthContext.jsx";
+import fetchWithAuth from "../api/fetchwithAuth.js";
 
 export default function AuthProvider ({children}){
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log(user);
 
     useEffect(() => {
         const getMe = async() => {
@@ -17,7 +16,8 @@ export default function AuthProvider ({children}){
                 if(!response.ok){
                     const data = await response.json();
                     setError(data.message);
-                    setUser(null)
+                    setUser(null);
+                    return;
                 }
 
                 const data = await response.json();
@@ -33,8 +33,25 @@ export default function AuthProvider ({children}){
         getMe();
     }, []);
 
+    const logOut = async() => {
+        await fetch('http://localhost:5000/signout', {method: "POST", credentials: 'include'});
+        setUser(null);
+    }
+
+     useEffect(() => {
+        function handleSessionExpired() {
+            logOut();
+        }
+
+        window.addEventListener('auth:session-expired', handleSessionExpired);
+
+        return () => {
+            window.removeEventListener('auth:session-expired', handleSessionExpired);
+        };
+    }, []);
+
     return(
-        <AuthContext value={{user, loading, error, setUser}}>
+        <AuthContext value={{user, loading, error, setUser, logOut}}>
             {children}
         </AuthContext>
     )
