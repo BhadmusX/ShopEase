@@ -1,16 +1,81 @@
-# React + Vite
+# ShopEase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ShopEase is a full-stack shopping cart application with a React frontend and an Express/MongoDB backend.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Customer features
 
-## React Compiler
+- User sign up, sign in, and sign out
+- Protected customer pages
+- Browse products from the store and external product data
+- Add products to a cart and change quantities
+- Remove items and clear the cart
+- Save products to a wishlist
+# ShopEase Frontend
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The React and Vite frontend for ShopEase.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- User sign up, sign in, and sign out
+- Protected customer pages
+- Browse products
+- Add products to a cart and change quantities
+- Remove cart items and clear the cart
+- Save products to a wishlist
+- Stripe checkout flow
+- Admin product management pages
+- Analytics cards and a seven-day revenue chart
+- Product image previews and updates
+
+## Technologies
+
+- React
+- Vite
+- React Router
+- CSS Modules
+- Lucide React icons
+- React Hot Toast
+
+## Requirements
+
+- Node.js
+- A running ShopEase backend
+
+## Environment variables
+
+Create `Shopping-Cart/.env` with:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Do not commit real secrets to the repository.
+
+## Running the frontend
+
+```bash
+cd Shopping-Cart
+npm install
+npm run dev
+```
+
+Vite normally runs on `http://localhost:5173`. If that port is busy, Vite prints the alternate port it uses.
+
+## Commands
+
+```bash
+npm run dev       # Start the development server
+npm run build     # Create a production build
+npm run preview   # Preview the production build
+npm run lint      # Run ESLint
+npm test          # Run Vitest
+```
+
+## Notes
+
+- The analytics page loads summary data and the last seven days of sales data.
+- Admin links and pages require a user with the `admin` role.
+- Product images are served by the backend through `/uploads`.
+VITE_API_URL=http://localhost:5000
