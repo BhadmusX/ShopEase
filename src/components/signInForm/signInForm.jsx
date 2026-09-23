@@ -25,7 +25,7 @@ export default function SignInForm({handleSubmit, password, email, setEmail, set
                 </label>
 
                 <div>
-                    <button type="submit" className={styles.signinbtn}>{loading ? "Signing In": "Sign In"}</button>
+                    <button type="submit" className={styles.signinbtn} disabled={loading}>{loading ? "Signing In": "Sign In"}</button>
                 </div>
                 </div>
             </form>

@@ -24,6 +24,7 @@
     font-size: clamp(1.2rem, 4vw, 1.8rem);
     font-family: sans-serif;
     color: #005236;
+    padding: 20px 0;
 }
 
 .heroBtnContainer{
@@ -38,7 +39,7 @@
     flex-direction: column;
     align-items: center; 
     gap: 5px;
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 600;
     padding: 5px 10px;
     border-radius: 7px;

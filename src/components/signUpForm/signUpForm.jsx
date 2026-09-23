@@ -36,7 +36,7 @@ export default function SignUpForm({data, error, handleSubmit, password, email, 
                 </label>
 
                 <div>
-                    <button type="submit" className={styles.createbtn}>{loading ? "Creating Account": "Create Account"}</button>
+                    <button type="submit" className={styles.createbtn} disabled={loading}>{loading ? "Creating Account": "Create Account"}</button>
                 </div>
                 </div>
             </form>

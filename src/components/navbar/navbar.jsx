@@ -54,7 +54,7 @@ export const Navbar = () => {
                     {user?.role === 'admin' && <NavLink to='/admin' onClick={() => setHamOpen(false)} className={styles.navlink}>Admin Dashboard</NavLink>}
                     </div>
 
-                    <div className={styles.navLowerContainer}><button className={styles.logOutBtn} onClick={() => logout()}>LogOut</button></div>
+                    {user && <div className={styles.navLowerContainer}><button className={styles.logOutBtn} onClick={() => logout()}>LogOut</button></div>}
                     </div>
                 </div>  
 
