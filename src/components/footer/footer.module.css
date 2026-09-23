@@ -9,7 +9,7 @@
 }
 .appname{
      color: #005236;
-    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-size: clamp(1.3rem, 4vw, 1.5rem);
     font-weight: 700;
     font-family:sans-serif;
 }

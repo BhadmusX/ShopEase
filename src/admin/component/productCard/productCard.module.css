@@ -51,6 +51,16 @@
     border-radius: 7px;
     cursor: pointer;
 }
+.featureBtnContainer{
+    border: 1px solid #005236;
+    padding: 4px;
+    border-radius: 7px;
+    cursor: pointer; 
+    color: #005236; 
+}
+.featured{
+    fill: #005236;
+}
 .delbtnContainer{
    border: 1px solid #005236;
     padding: 4px;

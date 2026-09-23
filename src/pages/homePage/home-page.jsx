@@ -2,8 +2,9 @@ import { Link } from "react-router";
 import { Navbar } from "../../components/navbar/navbar";
 import { Footer } from "../../components/footer/footer";
 import styles from '../homePage/homePage.module.css';
-import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck } from "lucide-react";
-import logo from '../../assert/shopImage.jpg'
+import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck, Lock, Repeat1} from "lucide-react";
+import logo from '../../assert/shopImage.jpg';
+import FeaturedProduct from "../../components/featuredProduct/featuredProduct";
 export default function Homepage (){
     return (
         <div className={styles.appWrapper}>
@@ -11,7 +12,11 @@ export default function Homepage (){
             <main className={styles.main}>
                 <div className={styles.container}>
                     <div className={styles.hero}>
+
                         <div className={styles.heroTopContainer}>
+                             <div className={styles.heroBadgeContainer}>
+                            <span className={styles.heroBadge}></span>
+                            <h1>Autumn / Winter Edition</h1></div>
                         <h1 className={styles.heroHeader}>Modern Essentials for Your Everyday</h1>
                     <p className={styles.heroText}>Discover our curated collection of high-quality products designed to elevate your lifestyle. Clean lines, premium materials, and unparalleled craftsmanship.</p>
 
@@ -33,6 +38,33 @@ export default function Homepage (){
                     </div>
                      <div className={styles.heroImg}><img className={styles.img} src={logo} alt="Shop image" /></div>
                      </div>
+
+                     <div className={styles.badgeContainer}>
+                        <div className={`${styles.badge} ${styles.review}`}>
+                            <Star size={15} style={{color: "#005236"}}/>
+                            <p>4.8 / 5 <span>—Over 2,000+ verified customer reviews</span></p>
+                        </div>
+
+                        <div className={`${styles.badge} ${styles.privacy}`}>
+                            <Lock size={15} style={{color: "#005236"}}/>
+                            <p>Secure SSL checkut & privacy Guaranteed</p>
+                        </div>
+
+                        <div className={`${styles.badge} ${styles.payment}`}>
+                            <h1>PAYMENTS</h1>
+                            <div>
+                            <span>Visa</span>
+                            <span>MasterCard</span>
+                            </div>
+                        </div>
+
+                        <div className={`${styles.badge} ${styles.return}`}>
+                            <Repeat1 size={15} style={{color: "#005236"}}/>
+                            <p>30-day effortless returns</p>
+                        </div>
+                     </div>
+
+                     <FeaturedProduct/>
 
                      <div className={styles.whyShop}>
                         <h1 className={styles.whyShopHeader}>Why Shop With Us</h1>

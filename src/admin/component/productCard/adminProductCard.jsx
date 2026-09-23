@@ -1,10 +1,10 @@
-import { Pencil, Trash } from "lucide-react"
+import { Pencil, Trash, Star} from "lucide-react"
 import { Link } from "react-router"
 import styles from '../productCard/productCard.module.css';
 const API_URL = import.meta.env.VITE_API_URL;
 
 
-const ProductCard = ({product, removeproduct}) => {
+const ProductCard = ({product, removeproduct, toggleFeaturedProduct}) => {
     return(
         <>
                 <div className={styles.productCard}>
@@ -15,6 +15,9 @@ const ProductCard = ({product, removeproduct}) => {
                         </div>
 
                         <div className={styles.upperCardRightContainer}>
+                             <div className={styles.featureBtnContainer}>
+                                <Star size={20} onClick={() => toggleFeaturedProduct(product.id)} className={product.isFeatured === true ? `${styles.featureBtn} ${styles.featured}` : `${styles.featureBtn}`}/>
+                            </div>
                             <div className={styles.btnContainer}>
                                 <Link to={`/admin/products/edit/${product.id}`}><Pencil size={20}/></Link> 
                             </div>

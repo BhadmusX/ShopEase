@@ -6,7 +6,7 @@ import { Link } from "react-router";
 import { Plus } from "lucide-react";
 
 const ProductsPage = () => {
-const {fetchproduct, loading, products, removeproduct} = useFetchproduct();
+const {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct} = useFetchproduct();
 
     useEffect(() => {
         fetchproduct();
@@ -27,7 +27,7 @@ const {fetchproduct, loading, products, removeproduct} = useFetchproduct();
                     </div>
                 </div>
                 { loading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div> : products.map(prod => {
-                    return <ProductCard key={prod.id} product={prod} removeproduct={removeproduct}/>;
+                    return <ProductCard key={prod.id} product={prod} removeproduct={removeproduct} toggleFeaturedProduct={toggleFeaturedProduct}/>;
                 })}
             </div>
         </>

@@ -9,7 +9,7 @@
 }
 .headerInfo h1{
   color: #1e5e43;
-  font-size: clamp(1.5rem, 3vw, 1.6rem);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
 }
 .headerInfo p{
   color: #58856e;

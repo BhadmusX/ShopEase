@@ -3,7 +3,8 @@ import { useNavigate } from "react-router";
 import AuthNavbar from "../../components/AuthNavbar/navbar";
 import SignUpForm from "../../components/signUpForm/signUpForm";
 import { Footer } from "../../components/footer/footer";
-import styles from '../signupPage/signupPage.module.css'
+import styles from '../signupPage/signupPage.module.css';
+import imageWrapper from "../../assert/ImageWrapper.jpg";
 
 export default function SignUpPage(){
     const [loading, setLoading] = useState(false);
@@ -47,6 +48,7 @@ export default function SignUpPage(){
 
     return(
         <div className={styles.container}>
+            <div className={styles.authContainer}>
             <div className={styles.navbar}>
                 <AuthNavbar/>
             </div>
@@ -62,6 +64,18 @@ export default function SignUpPage(){
             <div>
                  <Footer/>
             </div>
+            </div>
+
+              <div className={styles.imageWrapper}>
+                    <img src={imageWrapper} alt="BackgroundImage" />
+                    <div className={styles.imgTopBadge}>
+                        <span className={styles.topBadge}></span>
+                        <h1>The ShopEase Community</h1></div>
+                    {/* <div className={styles.imgBottomBadge}>
+                        <h1> THE EDITORIAL STANDARD</h1>
+                        <p>"Curated everyday essentials for modern living"</p>
+                        </div> */}
+                </div>            
         </div>  
     )
 }

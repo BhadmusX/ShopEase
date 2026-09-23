@@ -5,11 +5,13 @@ import SignInForm from "../../components/signInForm/signInForm";
 import AuthNavbar from "../../components/AuthNavbar/navbar";
 import { Footer } from "../../components/footer/footer";
 import styles from '../signinPage/signinPage.module.css'
+import toast from "react-hot-toast";
+import imageWrapper from "../../assert/ImageWrapper.jpg";
+import { Sparkle } from "lucide-react";
+const API_URL = import.meta.env.VITE_API_URL;
 export default function SignInPage(){
 
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [data, setData] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -21,7 +23,7 @@ export default function SignInPage(){
         e.preventDefault();
 
         const payload = {email, password}
-        const response = await fetch('http://localhost:5000/signin', {
+        const response = await fetch(`${API_URL}/signin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',
@@ -32,18 +34,16 @@ export default function SignInPage(){
 
         if(!response.ok){
             const data = await response.json();
-            setError(data.message);
-            return;
+            throw Error(data.message || 'Error while signing in');
         }
 
         const data = await response.json();
         setUser(data.data);
-        setData(data.message);
-        setError(null);
+        toast.success(data.message);
 
         navigate('/', {replace: true});
         }catch(err){
-            setError(err.message);
+            toast.error(err.message);
             setUser(null); 
         }finally{
             setLoading(false);
@@ -52,17 +52,34 @@ export default function SignInPage(){
 
     return(
          <div className={styles.container}>
-
-            <div><AuthNavbar/></div>
+            <div className={styles.authContainer}>
+                 <div><AuthNavbar/></div>
 
             <div className={styles.main}>
-                <div className={styles.textContainer}>
-                <h1 className={styles.text}>Welcome back</h1> 
-                <p className={styles.p}>Please enter your details to sign in.</p>
-                </div>
-                <SignInForm data={data} email={email} password={password} setEmail={setEmail} setPassword={setPassword} loading={loading} handleSubmit={handleSubmit} error={error}/></div>
+                    <div className={styles.textContainer}>
+                       <h1 className={styles.text}>Welcome back</h1> 
+                        <p className={styles.p}>Please enter your details to sign in.</p>
+                    </div>
 
-            <div><Footer/></div>
+                <SignInForm email={email} password={password} setEmail={setEmail} setPassword={setPassword} loading={loading} handleSubmit={handleSubmit}/>
+                </div>
+
+
+            <div>
+                <Footer/>
+            </div>
+            </div>
+
+              <div className={styles.imageWrapper}>
+                    <img src={imageWrapper} alt="BackgroundImage" />
+                    <div className={styles.imgTopBadge}>
+                        <span className={styles.topBadge}></span>
+                        <h1>Autumn / Winter Edition</h1></div>
+                    <div className={styles.imgBottomBadge}>
+                        <h1> <Sparkle size={20}/> THE EDITORIAL STANDARD</h1>
+                        <p>"Curated everyday essentials for modern living"</p>
+                        </div>
+                </div>
         </div>
     )
 }
