@@ -1,11 +1,8 @@
 import styles from '../signInForm/signInForm.module.css'
 import { Link } from 'react-router'
-export default function SignInForm({data, error, handleSubmit, password, email, setEmail, setPassword, loading}){
+export default function SignInForm({handleSubmit, password, email, setEmail, setPassword, loading}){
     return(
              <div className={styles.formContainer}>
-            <p>{data}</p>
-            <p>{error}</p>
-
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className={styles.labelContainer}>
 

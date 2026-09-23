@@ -20,7 +20,7 @@ label{
 }
 input{
     padding: 6px 6px;
-    width: 300px;
+    width: 100%;
     border-radius: 6px;
     border: 1px solid grey;
 }
@@ -34,17 +34,23 @@ input{
    flex-direction: row;
    justify-content: center;
    align-items: center;
-   font-size: clamp(0.9rem, 3vw, 1.3rem);
+   font-size: clamp(0.9rem, 3vw, 1.2rem);
    gap: 10px;
    font-weight: 600;
    width: 100%;
+   cursor: pointer;
+   transition: transform  0.3s ease-in-out, backgorund-color 0.3s ease-in-out;
+}
+.signinbtn:hover{
+    transform: scale(1.05);
+    background-color: #0e281c;
 }
 .signUpDiv{
     display: flex;
     flex-direction: row;
     font-family: sans-serif;
     gap: 5px;
-    font-size: clamp(0.9rem, 3vw, 1.3rem);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     justify-content: center;
     align-items: center;
     padding: 20px 0;
@@ -54,4 +60,7 @@ input{
 }
 .signUp{
     color: #005236;
+}
+.signUp:hover{
+    text-decoration: underline;
 }
