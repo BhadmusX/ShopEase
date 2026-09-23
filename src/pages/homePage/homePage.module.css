@@ -140,7 +140,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 20px 20vh;
+    padding: 20px;
     border: 1px solid #8eac9c;
 }
 .badge{

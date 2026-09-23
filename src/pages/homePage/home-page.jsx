@@ -3,7 +3,8 @@ import { Navbar } from "../../components/navbar/navbar";
 import { Footer } from "../../components/footer/footer";
 import styles from '../homePage/homePage.module.css';
 import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck, Lock, Repeat1} from "lucide-react";
-import logo from '../../assert/shopImage.jpg'
+import logo from '../../assert/shopImage.jpg';
+import FeaturedProduct from "../../components/featuredProduct/featuredProduct";
 export default function Homepage (){
     return (
         <div className={styles.appWrapper}>
@@ -62,6 +63,8 @@ export default function Homepage (){
                             <p>30-day effortless returns</p>
                         </div>
                      </div>
+
+                     <FeaturedProduct/>
 
                      <div className={styles.whyShop}>
                         <h1 className={styles.whyShopHeader}>Why Shop With Us</h1>

@@ -43,7 +43,27 @@ const removeproduct = async (id) => {
 }
 }
 
-return {fetchproduct, loading, products, removeproduct};
+const toggleFeaturedProduct = async (id) => {
+    try{
+        const response = await fetchFromDb(`${API_URL}/product/togglefeature/${id}`, {method: 'PUT', headers: {'Content-Type': 'application/json'}});
+        setProducts(prev => prev.map(product => {
+            if(product.id !== id){
+                return product;
+            }
+
+            return {...product, isFeatured: response.updatedProduct.isFeatured};
+        }));
+        if(response.updatedProduct.isFeatured === true){
+            toast.success('Product featured');
+        }else{
+            toast.success('Product unfeatured');
+        }
+    }catch(err){
+        toast.error(err.message);
+    }
+}
+
+return {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct};
 }
 
 export default useFetchproduct;

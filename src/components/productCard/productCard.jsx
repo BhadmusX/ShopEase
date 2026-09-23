@@ -50,7 +50,7 @@ export default function ProductCard({ product }) {
     return (
         <div className={styles.productContainer} key={product.id}>
             <div className={styles.imgContainer}>
-                <img className={styles.img} src={product.imageUrl || product.image} alt={product.title} />
+                <img className={styles.img} src={ product.imageUrl || product.image} alt={product.title} />
             </div>
             <div className={styles.infoContainer}>
                 <div className={styles.info}> 
