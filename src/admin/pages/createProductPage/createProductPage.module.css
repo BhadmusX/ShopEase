@@ -22,3 +22,8 @@
    font-weight: 400; 
    color:#78998e;
 }
+@media (min-width: 768px) {
+    .container{
+        
+    }
+}

@@ -8,6 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const CreateProductPage = () => {
     const onSubmit = async(formdata) => {
         await fetchFromDb(`${API_URL}/product/create`, {method: 'POST', body: formdata });
+        navigate('/admin/products');
         toast.success('Product Created');
     }
     const navigate = useNavigate();

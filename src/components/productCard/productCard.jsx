@@ -19,10 +19,12 @@ export default function ProductCard({ product }) {
 
     const handleAddToCart = async () => {
         try{
-        await addtocart(product, qty ); 
-        toast.success('Item Added') 
-        }catch{
-            toast.error(carterror)
+        const added = await addtocart(product, qty );
+        if (added) {
+            toast.success('Item Added');
+        }
+        }catch(err){
+            toast.error(err.message || carterror);
         } 
     };
 
@@ -37,9 +39,11 @@ export default function ProductCard({ product }) {
             });
                 toast.success('Item Removed');
             }else{
-            await addToWish(product);
+            const added = await addToWish(product);
             setWishListIds(prev => new Set(prev).add(productId));
-            toast.success('Item Added')
+            if(added){
+            toast.success('Item Added');
+            }
             }
         }
         catch(err){
