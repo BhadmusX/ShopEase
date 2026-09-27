@@ -1,0 +1,32 @@
+.filterBtnContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+
+      &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
+
+}
+
+
+.filterBtn{
+    border: 1px solid #336b51;
+    padding: 7px 20px;
+    border-radius: 25px;
+    scroll-snap-align: start;
+    color: #005236;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.active{
+    background-color: #c5d5cc;
+}
