@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
     const [qty, setQty] = useState(1);
     const {addtocart, loadingProductId, carterror} = useCart();
     const {addToWish, removeFromWish, wishListIds, setWishListIds} = useWish();
-    const productId = String(product.productId ?? product.id ?? product._id);
+    const productId = product._id || product.id;
 
     const isWishListed = wishListIds.has(productId);
 
@@ -29,6 +29,7 @@ export default function ProductCard({ product }) {
     };
 
     const handleAddToWish = async () => {
+        console.log(product);
         try{
             if(isWishListed){
                 await removeFromWish(productId);

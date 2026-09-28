@@ -1,7 +1,6 @@
 import { Pencil, Trash, Star} from "lucide-react"
 import { Link } from "react-router"
 import styles from '../productCard/productCard.module.css';
-const API_URL = import.meta.env.VITE_API_URL;
 
 
 const ProductCard = ({product, removeproduct, toggleFeaturedProduct}) => {
@@ -10,7 +9,7 @@ const ProductCard = ({product, removeproduct, toggleFeaturedProduct}) => {
                 <div className={styles.productCard}>
                     <div className={styles.upperCard}>
                         <div className={styles.upperCardLeftContainer}>
-                            <div className={styles.upperCardImgContainer}><img src={`${API_URL}/${product.imageUrl}`} className={styles.upperCardImg} alt={product.title} /></div>
+                            <div className={styles.upperCardImgContainer}><img src={product.imageUrl} className={styles.upperCardImg} alt={product.title} /></div>
                             <h1 className={styles.upperCardLeftText}>{product.title}</h1>
                         </div>
 

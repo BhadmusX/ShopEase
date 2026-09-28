@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
 import styles from '../createproductForm/createProductForm.module.css'
-const API_URL = import.meta.env.VITE_API_URL;
 const CreateproductForm = ({
     initialValues = {},
     onSubmit,
@@ -19,7 +18,7 @@ const CreateproductForm = ({
                 return URL.createObjectURL(imageUrl)
             }
             if(initialValues?.imageUrl){
-              return `${API_URL}/${initialValues?.imageUrl}`  
+              return initialValues?.imageUrl; 
             }
 
             return null;

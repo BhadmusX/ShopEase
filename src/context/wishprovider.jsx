@@ -69,7 +69,7 @@ const WishProvider = ({children}) => {
           return false
         }
         try{
-            const productId = String(product.productId || product.id);
+            const productId = String(product.productId || product.id || product._id);
             const imageUrl = product.imageUrl || product.image;
             await fetchFromDb('http://localhost:5000/favorite/create', {
                 method: 'POST',
