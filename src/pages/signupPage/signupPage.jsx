@@ -50,7 +50,7 @@ export default function SignUpPage(){
         <div className={styles.container}>
             <div className={styles.authContainer}>
             <div className={styles.navbar}>
-                <AuthNavbar/>
+                <AuthNavbar backTo={"/signin"} backToLabel={'Login'}/>
             </div>
 
             <div className={styles.main}>

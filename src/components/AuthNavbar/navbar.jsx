@@ -3,10 +3,8 @@ import styles from '../AuthNavbar/navbar.module.css'
 export default function AuthNavbar({backTo, backToLabel}){
     return(
         <div className={styles.navContainer}>
-            <nav>
             <h1 className={styles.appname}>ShopEase</h1>
-            <Link to={backTo} className={styles.backLabel}>{backToLabel}</Link>
-        </nav>
+            <Link to={backTo} className={styles.navLink}>{backToLabel}</Link>
         </div>
     )
 }
