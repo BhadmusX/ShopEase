@@ -15,3 +15,11 @@
     padding: 20px 10px;
     border-bottom: 1px solid #565E74;
 }
+.navLink{
+    background-color: #005236;
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 7px;
+    font-weight: 500;
+}

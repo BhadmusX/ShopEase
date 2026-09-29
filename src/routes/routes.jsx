@@ -1,4 +1,8 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
+import { Toaster } from "react-hot-toast";
+import AuthProvider from "../context/AuthProvider.jsx";
+import { CartProvider } from "../context/cartProvider.jsx";
+import WishProvider from "../context/wishprovider.jsx";
 import ShopPage from "../pages/shopPage/shop-page.jsx";
 import Homepage from "../pages/homePage/home-page.jsx";
 import { CartPage } from "../pages/cartPage/cart-page.jsx";
@@ -13,9 +17,22 @@ import CreateProductPage from "../admin/pages/createProductPage/createProductPag
 import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
 import EditProductPage from "../admin/pages/editProductPage/editProductPage.jsx";
 import AnalyticsPage from "../admin/pages/analyticsPage/analyticsPage.jsx";
+
+const RootLayout = () => (
+    <AuthProvider>
+        <CartProvider>
+            <WishProvider>
+                <Toaster position="top-right" />
+                <Outlet />
+            </WishProvider>
+        </CartProvider>
+    </AuthProvider>
+);
+
 const router = createBrowserRouter([
 
     {
+        element: <RootLayout />,
         errorElement: <ErrorPage/>,
         children: [
             {

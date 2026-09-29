@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import fetchFromDb from "../utils/fetchFromDb";
 import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 const useFetchproduct = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [activeCategory, setActiveCategory] = useState('all');
 
     const fetchproduct = useCallback(
         async () => {
@@ -63,7 +64,11 @@ const toggleFeaturedProduct = async (id) => {
     }
 }
 
-return {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct};
+const filterProducts = useMemo(() => {
+    return activeCategory === "all" ? products : products.filter(p => p.category === activeCategory);
+}, [products, activeCategory]);
+
+return {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct, filterProducts, setActiveCategory, activeCategory};
 }
 
 export default useFetchproduct;

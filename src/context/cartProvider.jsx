@@ -2,6 +2,7 @@ import { useCallback, useEffect,useState } from "react";
 import { cartContext } from "./cartContext.jsx";
 import fetchFromDb from "../utils/fetchFromDb";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const CartProvider = ({children}) => {
@@ -9,9 +10,17 @@ export const CartProvider = ({children}) => {
     const [loadingProductId, setLoadingProductId] = useState(null);
   const [carterror, setError] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate();
 
   const addtocart = async(product, qty=1) => {
     console.log(product);
+    if (authLoading) {
+      return false;
+    }
+    if(!user){
+      navigate('/signin');
+      return false;
+    }
     const productId = String(product.id ?? product.productId ?? product._id);
     setLoadingProductId(productId);
     setError(null);
@@ -38,6 +47,7 @@ export const CartProvider = ({children}) => {
           return [...prev, {...product, qty}];
 
         });
+          return true;
     }catch(err){
         setError(err.message);
         throw err

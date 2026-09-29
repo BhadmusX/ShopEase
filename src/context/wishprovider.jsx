@@ -3,6 +3,7 @@ import wishContext from "./wishContext";
 import fetchFromDb from "../utils/fetchFromDb";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 const WishProvider = ({children}) => {
   const { user, loading: authLoading } = useAuth();
     const [wishListdata, setWishListData] = useState([]);
@@ -11,6 +12,7 @@ const WishProvider = ({children}) => {
     const [wishData, setWishData] = useState([]);
     const [wishLoading, setLoading] = useState(false);
     const [wishListIds, setWishListIds] = useState(new Set());
+    const navigate = useNavigate();
 
     let wishListRequest = null;
       const getWishList = useCallback(async () => {
@@ -58,8 +60,16 @@ const WishProvider = ({children}) => {
 
 
       const addToWish = async (product) => {
+        if(authLoading){
+          return false
+        }
+
+        if(!user){
+          navigate('/signin');
+          return false
+        }
         try{
-            const productId = String(product.productId || product.id);
+            const productId = String(product.productId || product.id || product._id);
             const imageUrl = product.imageUrl || product.image;
             await fetchFromDb('http://localhost:5000/favorite/create', {
                 method: 'POST',
@@ -86,7 +96,7 @@ const WishProvider = ({children}) => {
                 imageUrl
               }];
             });
-
+            return true
         }catch(err){
            throw err;
         }

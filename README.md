@@ -77,5 +77,6 @@ npm test          # Run Vitest
 
 - The analytics page loads summary data and the last seven days of sales data.
 - Admin links and pages require a user with the `admin` role.
-- Product images are served by the backend through `/uploads`.
-VITE_API_URL=http://localhost:5000
+- New product images are stored and delivered by Cloudinary; the backend API returns their image URLs to the frontend.
+- Cloudinary credentials belong only in the backend environment and are not needed in the frontend `.env` file.
+- Existing product records with local `/uploads` paths are not automatically migrated and may need separate migration.
