@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthContext from "./AuthContext.jsx";
 import fetchWithAuth from "../api/fetchwithAuth.js";
-import fetchFromDb from '../utils/fetchFromDb.js';
 import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_API_URL;
 export default function AuthProvider ({children}){
@@ -59,7 +58,7 @@ export default function AuthProvider ({children}){
         try{
             setForgotLoading(true);
             const newBody = JSON.stringify({email});
-            const response = await fetchFromDb(`${API_URL}/forgotpassword` ,{method: 'POST', body: newBody, headers: {"Content-type": "application/json"}});
+            const response = await fetch(`${API_URL}/forgotpassword` ,{method: 'POST', body: newBody, headers: {"Content-type": "application/json"}, credentials: "include"});
             toast.success(response.message);
             setForgotModal(true);
         }catch(err){
@@ -74,7 +73,7 @@ export default function AuthProvider ({children}){
         try{
             setResetLoading(true);
             const newBody = JSON.stringify({token:token, newPassword: newPassword})
-            const response = await fetchFromDb(`${API_URL}/resetpassword`, {method: 'POST',  headers: {'Content-Type': "application/json"}, body: newBody});
+            const response = await fetch(`${API_URL}/resetpassword`, {method: 'POST',  headers: {'Content-Type': "application/json"}, body: newBody, credentials: "include"});
             toast.success(response.message);
         }catch(err){
             toast.error(err.message);
