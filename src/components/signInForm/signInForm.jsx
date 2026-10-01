@@ -23,6 +23,7 @@ export default function SignInForm({handleSubmit, password, email, setEmail, set
                     placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)} />
                 </label>
+                <Link className={styles.forgotPassword} to="/forgotpassword">Forgot password?</Link>
 
                 <div>
                     <button type="submit" className={styles.signinbtn} disabled={loading}>{loading ? "Signing In": "Sign In"}</button>

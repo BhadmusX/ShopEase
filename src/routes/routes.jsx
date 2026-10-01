@@ -17,6 +17,8 @@ import CreateProductPage from "../admin/pages/createProductPage/createProductPag
 import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
 import EditProductPage from "../admin/pages/editProductPage/editProductPage.jsx";
 import AnalyticsPage from "../admin/pages/analyticsPage/analyticsPage.jsx";
+import ForgotPassword from "../pages/forgotPasswordPage/forgotPassword.jsx";
+import ResetPassword from "../pages/resetPasswordPage/resetPassword.jsx";
 
 const RootLayout = () => (
     <AuthProvider>
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
     {
         path:'signin',
         element: <SignInPage/>
+    },
+    {
+        path: 'forgotpassword',
+        element: <ForgotPassword/>
+    },
+    {
+        path: "resetpassword/:token",
+        element: <ResetPassword/>
     },
     {
         element: <ProtectedRoute/>,

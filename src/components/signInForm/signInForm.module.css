@@ -64,3 +64,6 @@ input{
 .signUp:hover{
     text-decoration: underline;
 }
+.forgotPassword{
+    color: #005236;
+}

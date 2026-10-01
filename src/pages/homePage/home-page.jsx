@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { Navbar } from "../../components/navbar/navbar";
 import { Footer } from "../../components/footer/footer";
 import styles from '../homePage/homePage.module.css';
-import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck, Lock, Repeat1, MoveRightIcon} from "lucide-react";
+import { Truck, BadgeCheck, PackageCheck, Star, ShieldCheck, Lock, Repeat1, } from "lucide-react";
 import logo from '../../assert/shopImage.jpg';
 import FeaturedProduct from "../../components/featuredProduct/featuredProduct";
 import useAuth from "../../hooks/useAuth";
@@ -11,7 +11,7 @@ export default function Homepage (){
     const {user}= useAuth();
     return (
         <div className={styles.appWrapper}>
-            {user ? <Navbar/> : <AuthNavbar backTo={'/signin'} backToLabel={"Login"} backToIcon={<MoveRightIcon size={20}/>}/>}
+            {user ? <Navbar/> : <AuthNavbar backTo={'/signin'} backToLabel={"Login"} />}
             <main className={styles.main}>
                 <div className={styles.container}>
                     <div className={styles.hero}>
