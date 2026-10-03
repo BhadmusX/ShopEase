@@ -11,8 +11,8 @@ const ForgotPassword = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await sendResetLink({email});
-        setEmail('');
+        const sent = await sendResetLink({email});
+        if (sent) setEmail('');
     }
     return(
         <div className={styles.appWrapper}>
@@ -31,6 +31,9 @@ const ForgotPassword = () => {
                     type="email" 
                     name="email" 
                     id="email" 
+                    required
+                    pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                    title="Enter a valid email address"
                     value={email}
                     placeholder='name@example.com' 
                     onChange={(e) => setEmail(e.target.value)}

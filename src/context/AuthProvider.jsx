@@ -59,10 +59,17 @@ export default function AuthProvider ({children}){
             setForgotLoading(true);
             const newBody = JSON.stringify({email});
             const response = await fetch(`${API_URL}/forgotpassword` ,{method: 'POST', body: newBody, headers: {"Content-type": "application/json"}, credentials: "include"});
-            toast.success(response.message);
+            const data = await response.json();
+            if (!response.ok) {
+                toast.error(data.message || "Unable to send reset link");
+                return false;
+            }
+            toast.success(data.message);
             setForgotModal(true);
+            return true;
         }catch(err){
             toast.error(err.message);
+            return false;
         }
         finally{
             setForgotLoading(false)

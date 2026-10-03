@@ -44,7 +44,7 @@ export const CartProvider = ({children}) => {
             return String(i.productId) === productId ? {...i, qty: i.qty + qty }: i;
            })
           }
-          return [...prev, {...product, qty}];
+          return [...prev, {...product, productId, qty}];
 
         });
           return true;
