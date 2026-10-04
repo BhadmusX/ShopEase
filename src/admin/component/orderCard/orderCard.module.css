@@ -56,10 +56,32 @@
     flex-direction: row;
     gap: 5px;
     align-items: center;
+    font-weight: 600;
 }
 .pending{
+    background-color: #EDF2EE;
+    color: #52695A;
+    border-color: #c5d5cc;
+}
+.delivered{
+  background-color: #4C7A5C;
+  color: #FFFFFF; 
+  border-color: #336b51; 
+}
+.shipped{
+    background-color: #BFDCC6;
+    color: #2E6B45;
+    border-color: #58856e;
+}
+.processing{
     background-color: #c5d5cc;
-    color: #1e5e43;
+    color: #3F6350;
+    border-color: #D9E6DC;
+}
+.cancelled{
+    background-color: #E8E9E7;
+    color: #6B7280;
+    border-color: #d8e3dd;
 }
 @keyframes statusPulse {
   0%, 100% {

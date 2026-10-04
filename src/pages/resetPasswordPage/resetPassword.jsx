@@ -5,12 +5,15 @@ import styles from '../resetPasswordPage/resetPassword.module.css'
 import useAuth from "../../hooks/useAuth";
 import { useParams } from "react-router";
 import toast from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
 const ResetPassword = () => {
 
     const {resetLoading, resetPassword} = useAuth();
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const {token} = useParams();
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConPassword, setShowConPassword] = useState(false)
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -37,20 +40,28 @@ const ResetPassword = () => {
                     <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
                     <label htmlFor="password">
                         New Password
-                        <input 
-                        type="password" 
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                         />
+                        <div className={styles.passwordContainer}>
+                         <input 
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    value={password}
+                    placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)} />
+                    <button type="button" onClick={() => setShowPassword(prev => !prev)}>{showPassword ? <Eye size={20}/> : <EyeOff size={20}/>}</button>
+                    </div>
                     </label>
 
                     <label htmlFor="confirmPassword">
                         Confirm Password
-                        <input type="password"
-                        id="confirmPassword"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)} />
+                        <div className={styles.passwordContainer}>
+                         <input 
+                    type={showConPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    placeholder='Min.8 character'
+                    onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <button type="button" onClick={() => setShowConPassword(prev => !prev)}>{showConPassword ? <Eye size={20}/> : <EyeOff size={20}/>}</button>
+                    </div>
                     </label>
 
                     <div className={styles.btnContainer}>

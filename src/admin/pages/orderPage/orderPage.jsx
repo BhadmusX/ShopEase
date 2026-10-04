@@ -4,14 +4,14 @@ import styles from '../orderPage/orderPage.module.css';
 import OrderCard from "../../component/orderCard/orderCard";
 import ProductFilter from "../../component/productFilter/productFilter";
 const AdminOrderPage = () => {
-    const {adminLoading, fetchOrders, filteredOrders, setActiveCategory, activeCategory} = useFetchOrders();
+    const {adminLoading, fetchOrders, filteredOrders, setActiveCategory, activeCategory, updateOrderStatus} = useFetchOrders();
 
     useEffect(() => {
         fetchOrders();
     }, [fetchOrders]);
 
-    const categories = ["all", "pending", "shipped", "delivered", "cancelled"];
-
+    const categories = ["all", "pending", "processing", "shipped", "delivered", "cancelled"];
+    const status = ["pending", "processing", "shipped", "delivered", "cancelled"];
     return(
         <>
         <div className={styles.header}>
@@ -28,7 +28,7 @@ const AdminOrderPage = () => {
         </div>
 
         {adminLoading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div> : <div>
-            {filteredOrders.map(order => <OrderCard key={order.orderId} order={order}/>)}
+            {filteredOrders.map(order => <OrderCard key={order.orderId} order={order} status={status} updateOrderStatus={updateOrderStatus}/>)}
             </div>}
         </>
         

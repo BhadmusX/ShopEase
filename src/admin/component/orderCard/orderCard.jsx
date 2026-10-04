@@ -1,6 +1,6 @@
 import styles from '../orderCard/orderCard.module.css';
 import formatCurrency from '../../../utils/formatCurrency';
-const OrderCard = ({order}) => {
+const OrderCard = ({order, status, updateOrderStatus}) => {
     const orderDate = new Date(order.createdAt).toLocaleDateString('en-US', {
     year: 'numeric',
     month: '2-digit',
@@ -38,7 +38,16 @@ const OrderCard = ({order}) => {
 
                 <div className={styles.bottomCard}>
                     <p>Status</p>
-                    <h1 className={`${styles[order.status]} ${styles.status}`}><span className={styles.pulse}></span> {order.status}</h1>
+                    <select 
+                    name="status" 
+                    id="status" 
+                    className={`${styles[order.status]} ${styles.status}`}
+                    value={order.status}
+                    onChange={(e) => updateOrderStatus(order._id, e.target.value)}>
+                        {status.map(s => {
+                            return <option value={s} key={s}>{s}</option>
+                        })}
+                    </select>
                 </div>
             </div>
         </div>

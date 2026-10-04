@@ -24,6 +24,24 @@ input{
     border-radius: 6px;
     border: 1px solid grey;
 }
+.passwordContainer{
+    position: relative;
+}
+.passwordContainer input{
+    width: 100%;
+    padding-right: 40px;
+}
+.passwordContainer button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    background: none;
+    transform: translateY(-50%);
+    color: grey;
+}
 .createbtn{
     background-color: #005236; 
    color: white;

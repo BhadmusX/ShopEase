@@ -22,11 +22,24 @@ const useFetchOrders = () => {
         }
     }, []);
 
+    const updateOrderStatus = async(id, status) => {
+        try{
+            const response = await fetchFromDb(`${API_URL}/orders/update/${id}`, {method: "PUT", headers: {"Content-Type" : "application/json"}, body: JSON.stringify({status: status})});
+            setAdminOrders(prev => prev.map(p => {
+              return  p._id === id ? {...p, status: status} : p;
+            }));
+            console.log(adminOrders)
+            toast.success("Status updated")
+        }catch(err){
+            toast.error(err.message);
+        }
+    }
+
     const filteredOrders = useMemo(() => {
         return activeCategory === "all" ? adminOrders : adminOrders.filter(i => i.status === activeCategory);
     }, [activeCategory, adminOrders]);
 
-    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory}
+    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus}
 }
 
 export default useFetchOrders;
