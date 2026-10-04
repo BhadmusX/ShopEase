@@ -8,6 +8,8 @@ const useFetchOrders = () => {
     const [adminOrders, setAdminOrders] = useState([]);
     const [adminLoading, setAdminLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState("all");
+    const [userOrders, setUserOrders] = useState([]);
+    const [userLoading, setUserLoading] = useState(true);
 
     const fetchOrders = useCallback(async() => {
         try{
@@ -33,13 +35,30 @@ const useFetchOrders = () => {
         }catch(err){
             toast.error(err.message);
         }
-    }
+    };
+
+    const fetchUserOrders = useCallback(
+    async () => {
+        try{
+            setUserLoading(true);
+            const response = await fetchFromDb(`${API_URL}/orders/user/get`, {method: "GET"});
+            setUserOrders(response);
+        }catch(err){
+            toast.error(err.message);
+        }finally{
+            setUserLoading(false);
+        }
+    }, []);
 
     const filteredOrders = useMemo(() => {
         return activeCategory === "all" ? adminOrders : adminOrders.filter(i => i.status === activeCategory);
     }, [activeCategory, adminOrders]);
 
-    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus}
+    const filteredUsersOrders = useMemo(() => {
+        return activeCategory === "all" ? userOrders : userOrders.filter(i => i.status === activeCategory);
+    }, [activeCategory, userOrders]);
+
+    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus, filteredUsersOrders, fetchUserOrders};
 }
 
 export default useFetchOrders;

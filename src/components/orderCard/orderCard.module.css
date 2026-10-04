@@ -1,0 +1,16 @@
+.products{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.product{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.productImage{
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
+	flex: 0 0 56px;
+}

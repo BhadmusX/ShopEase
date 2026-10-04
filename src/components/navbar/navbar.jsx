@@ -6,6 +6,7 @@ import logo from "../../assert/shopease-logo.svg"
 import { useCart } from "../../hooks/useCart";
 import useWish from "../../hooks/useWish";
 import useAuth from "../../hooks/useAuth";
+import { Home, Gift, ShoppingBag, LayoutDashboardIcon } from "lucide-react";
 export const Navbar = () => {
   
     const [isHamOpen, setHamOpen] = useState(false);
@@ -49,9 +50,10 @@ export const Navbar = () => {
                     <div className={`${styles.nav} ${isHamOpen ? styles.activeNav : styles.Nav}`}>
                     <div className={styles.navUpperContainer}>
                         <div className={styles.logoContainer}><img className={styles.logo}src={logo} alt="ShopEase" /></div>
-                    <NavLink to="/" onClick={() => setHamOpen(false)} className={styles.navlink}>Home</NavLink>
-                    <NavLink to='/shop' onClick={() => setHamOpen(false)} className={styles.navlink}>Shop</NavLink>
-                    {user?.role === 'admin' && <NavLink to='/admin' onClick={() => setHamOpen(false)} className={styles.navlink}>Admin Dashboard</NavLink>}
+                    <NavLink to="/" onClick={() => setHamOpen(false)} className={styles.navlink}><Home size={20}/>Home</NavLink>
+                    <NavLink to='/shop' onClick={() => setHamOpen(false)} className={styles.navlink}><ShoppingBag size={20}/>Shop</NavLink>
+                    <NavLink to="/orders" onClick={() => setHamOpen(false)} className={styles.navlink}><Gift size={20}/>Orders</NavLink>
+                    {user?.role === 'admin' && <NavLink to='/admin' onClick={() => setHamOpen(false)} className={styles.navlink}><LayoutDashboardIcon size={20}/>Admin Dashboard</NavLink>}
                     </div>
 
                     {user && <div className={styles.navLowerContainer}><button className={styles.logOutBtn} onClick={() => logout()}>LogOut</button></div>}
