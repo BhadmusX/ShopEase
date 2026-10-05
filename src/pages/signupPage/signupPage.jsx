@@ -6,6 +6,8 @@ import { Footer } from "../../components/footer/footer";
 import styles from '../signupPage/signupPage.module.css';
 import imageWrapper from "../../assert/ImageWrapper.jpg";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function SignUpPage(){
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -21,7 +23,7 @@ export default function SignUpPage(){
         e.preventDefault();
         const payload = {email, password, name};
 
-        const response = await fetch('http://localhost:5000/signup',{
+        const response = await fetch(`${API_URL}/signup`,{
             method: 'POST',
             body: JSON.stringify(payload),
             headers: {'Content-Type': 'application/json'},

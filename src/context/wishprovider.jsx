@@ -4,6 +4,7 @@ import fetchFromDb from "../utils/fetchFromDb";
 import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router";
+const API_URL = import.meta.env.VITE_API_URL;
 const WishProvider = ({children}) => {
   const { user, loading: authLoading } = useAuth();
     const [wishListdata, setWishListData] = useState([]);
@@ -20,7 +21,7 @@ const WishProvider = ({children}) => {
         setWishError(null);
         try{
         if (!wishListRequest) {
-          wishListRequest = fetchFromDb('http://localhost:5000/favorite/get', {
+          wishListRequest = fetchFromDb(`${API_URL}/favorite/get`, {
               method:'GET',
               headers: {'Content-Type': 'application/json'},
           });
@@ -71,7 +72,7 @@ const WishProvider = ({children}) => {
         try{
             const productId = String(product.productId || product.id || product._id);
             const imageUrl = product.imageUrl || product.image;
-            await fetchFromDb('http://localhost:5000/favorite/create', {
+            await fetchFromDb(`${API_URL}/favorite/create`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -104,7 +105,7 @@ const WishProvider = ({children}) => {
 
         const removeFromWish = async (productId) => {
         try{
-          await fetchFromDb(`http://localhost:5000/favorite/delete/${productId}`, {
+          await fetchFromDb(`${API_URL}/favorite/delete/${productId}`, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json'}
             }); 

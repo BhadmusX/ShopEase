@@ -1,4 +1,6 @@
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 let isrefreshing = false;
 let failedQueue = [];
 
@@ -39,7 +41,7 @@ async function fetchWithAuth(url, options ={}){
     isrefreshing = true;
 
     try{
-        const refreshResponse = await fetch('http://localhost:5000/refresh', {
+        const refreshResponse = await fetch(`${API_URL}/refresh`, {
             method: 'POST',
             credentials: 'include'
         });
