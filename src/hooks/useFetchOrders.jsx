@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import fetchFromDb from "../utils/fetchFromDb";
 import useAuth from "./useAuth";
 const API_URL = import.meta.env.VITE_API_URL;
-const useFetchOrders = () => {
+const useFetchOrders = (categories) => {
 
     const [adminOrders, setAdminOrders] = useState([]);
     const [adminLoading, setAdminLoading] = useState(true);
@@ -50,6 +50,22 @@ const useFetchOrders = () => {
         }
     }, []);
 
+    const categoryCount = useMemo(() => {
+        const counts = {};
+        categories.forEach(cat => {
+            counts[cat] = cat === "all" ? userOrders.length : userOrders.filter(o => o.status === cat).length
+        });
+        return counts;
+    }, [userOrders, categories]);
+
+    const caategoryAdminCount = useMemo(() => {
+        const counts = {};
+        categories.forEach(cat => {
+            counts[cat] = cat === "all" ? adminOrders.length : adminOrders.filter(o => o.status === cat).length
+        });
+        return counts;
+    }, [adminOrders, categories]);
+
     const filteredOrders = useMemo(() => {
         return activeCategory === "all" ? adminOrders : adminOrders.filter(i => i.status === activeCategory);
     }, [activeCategory, adminOrders]);
@@ -58,7 +74,7 @@ const useFetchOrders = () => {
         return activeCategory === "all" ? userOrders : userOrders.filter(i => i.status === activeCategory);
     }, [activeCategory, userOrders]);
 
-    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus, filteredUsersOrders, fetchUserOrders};
+    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus, filteredUsersOrders, fetchUserOrders, categoryCount, caategoryAdminCount, setUserLoading};
 }
 
 export default useFetchOrders;

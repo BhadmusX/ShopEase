@@ -6,8 +6,8 @@ import OrderCard from '../../components/orderCard/ordercard';
 import useFetchOrders from '../../hooks/useFetchOrders';
 import styles from '../orderPage/orderPage.module.css';
 const OrderPage = () => {
-    const categories = ["All", "pending", "processing", "shipped", "delivered", "cancelled"];
-    const {setActiveCategory, activeCategory, filteredUsersOrders, fetchUserOrders} = useFetchOrders();
+    const categories = ["all", "pending", "processing", "shipped", "delivered", "cancelled"];
+    const {setActiveCategory, activeCategory, filteredUsersOrders, fetchUserOrders, categoryCount, userLoading} = useFetchOrders(categories);
 
     useEffect(() => {
         fetchUserOrders();
@@ -27,13 +27,17 @@ const OrderPage = () => {
                     </div>
 
                     <div className={styles.bottomHeader}>
-                        <ProductFilter categories={categories} setActiveCategory={setActiveCategory} activeCategory={activeCategory}/>
+                        <ProductFilter categories={categories} setActiveCategory={setActiveCategory} activeCategory={activeCategory} filteredOrders={filteredUsersOrders} count={categoryCount}/>
                     </div>
                 </div> 
 
-                <div className={styles.orderContainer}>
+
+                {
+                    userLoading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div>:  <div className={styles.orderContainer}>
                     {filteredUsersOrders.map(order => <OrderCard order={order}/>)}
                 </div>
+                }
+               
             </div>
             <Footer/>
         </div>

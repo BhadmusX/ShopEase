@@ -4,13 +4,14 @@ import styles from '../orderPage/orderPage.module.css';
 import OrderCard from "../../component/orderCard/orderCard";
 import ProductFilter from "../../component/productFilter/productFilter";
 const AdminOrderPage = () => {
-    const {adminLoading, fetchOrders, filteredOrders, setActiveCategory, activeCategory, updateOrderStatus} = useFetchOrders();
+    const categories = ["all", "pending", "processing", "shipped", "delivered", "cancelled"];
+    const {adminLoading, fetchOrders, filteredOrders, setActiveCategory, activeCategory, updateOrderStatus, caategoryAdminCount} = useFetchOrders(categories);
 
     useEffect(() => {
         fetchOrders();
     }, [fetchOrders]);
 
-    const categories = ["all", "pending", "processing", "shipped", "delivered", "cancelled"];
+    
     const status = ["pending", "processing", "shipped", "delivered", "cancelled"];
     return(
         <>
@@ -23,7 +24,7 @@ const AdminOrderPage = () => {
             </div> 
 
               <div>
-                <ProductFilter categories={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory}/>
+                <ProductFilter categories={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} filteredOrders={filteredOrders} count={caategoryAdminCount}/>
               </div>
         </div>
 
