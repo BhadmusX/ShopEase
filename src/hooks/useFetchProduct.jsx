@@ -3,7 +3,7 @@ import fetchFromDb from "../utils/fetchFromDb";
 import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_API_URL;
 
-const useFetchproduct = () => {
+const useFetchproduct = (categories) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('all');
@@ -64,11 +64,19 @@ const toggleFeaturedProduct = async (id) => {
     }
 }
 
+const productCount = useMemo(() => {
+    const count = {};
+    categories.forEach(cat => {
+        count[cat] = cat === "all" ? products.length : products.filter(p => p.category === cat).length;
+    });
+    return count;
+}, [categories, products])
+
 const filterProducts = useMemo(() => {
     return activeCategory === "all" ? products : products.filter(p => p.category === activeCategory);
 }, [products, activeCategory]);
 
-return {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct, filterProducts, setActiveCategory, activeCategory};
+return {fetchproduct, loading, products, removeproduct, toggleFeaturedProduct, filterProducts, setActiveCategory, activeCategory, productCount};
 }
 
 export default useFetchproduct;

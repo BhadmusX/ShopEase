@@ -2,14 +2,9 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import fetchFromDb from "../../../utils/fetchFromDb";
 import styles from "./salesChart.module.css";
+import formatCurrency from "../../../utils/formatCurrency";
 
 const API_URL = import.meta.env.VITE_API_URL;
-
-const formatCurrency = (value) => new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-}).format(value);
 
 const SalesChart = () => {
     const [dailySales, setDailySales] = useState([]);

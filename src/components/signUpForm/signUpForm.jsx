@@ -1,6 +1,9 @@
 import styles from '../signUpForm/signUpForm.module.css'
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 export default function SignUpForm({data, error, handleSubmit, password, email, name, setName, setEmail, setPassword, loading}){
+    const [showPassword, setShowPassword] = useState(false);
     return(
              <div className={styles.formContainer}>
             <p>{data}</p>
@@ -28,11 +31,15 @@ export default function SignUpForm({data, error, handleSubmit, password, email, 
 
                 <label htmlFor="password">
                     Password
-                    <input type="password"
+                    <div className={styles.passwordContainer}>
+                         <input 
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     value={password}
-                    placeholder='Min. 8 characters'
+                    placeholder='Password'
                     onChange={(e) => setPassword(e.target.value)} />
+                    <button type="button" onClick={() => setShowPassword(prev => !prev)}>{showPassword ? <Eye size={20}/> : <EyeOff size={20}/>}</button>
+                    </div>
                 </label>
 
                 <div>

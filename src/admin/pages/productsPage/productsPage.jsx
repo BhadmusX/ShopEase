@@ -7,13 +7,14 @@ import { Plus } from "lucide-react";
 import ProductFilter from "../../component/productFilter/productFilter";
 
 const ProductsPage = () => {
-const {fetchproduct, loading, filterProducts,  removeproduct, toggleFeaturedProduct, setActiveCategory, activeCategory} = useFetchproduct();
+    const categories = ["all", "clothing", "glasses", "watches", "shoes"];
+const {fetchproduct, loading, filterProducts,  removeproduct, toggleFeaturedProduct, setActiveCategory, activeCategory, productCount} = useFetchproduct(categories);
 
     useEffect(() => {
         fetchproduct();
     }, [fetchproduct]);
 
-    const categories = ["all", "clothing", "glasses", "watches", "shoes"];
+    
 
     console.log(filterProducts);
     return(
@@ -32,7 +33,7 @@ const {fetchproduct, loading, filterProducts,  removeproduct, toggleFeaturedProd
                     </div>
                     </div>
 
-                    <ProductFilter setActiveCategory={setActiveCategory} activeCategory={activeCategory} categories={categories}/>
+                    <ProductFilter setActiveCategory={setActiveCategory} activeCategory={activeCategory} categories={categories} count={productCount}/>
                 </div>
                 { loading ? <div className={styles.spinnerContainer}><div className={styles.spinner}></div></div> : filterProducts.map(prod => {
                     return <ProductCard key={prod.id} product={prod} removeproduct={removeproduct} toggleFeaturedProduct={toggleFeaturedProduct}/>;

@@ -1,0 +1,130 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.orderCard{
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	background: #ffffff;
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid #e2e8f0;
+  box-shadow: 
+    0 10px 25px -3px rgba(0, 0, 0, 0.08), /* Soft ambient spread */
+    0 4px 6px -4px rgba(0, 0, 0, 0.04),    /* Sharp contact shadow */
+    0 0 0 1px rgba(0, 0, 0, 0.03);         /* Crisp subtle outline */
+  
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.topCard, .middleCard, .bottomCard{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-family: sans-serif;
+}
+.topCard .orderDetails h1{
+	font-size: clamp(1rem, 3vw, 1.3rem);
+	font-weight: 500;
+}
+.topCard .orderDetails p{
+	font-size: clamp(0.9rem, 3vw, 1.2rem);
+	color: grey;
+}
+.orderStatus{
+	max-height: 25px;
+	 padding: 5px  10px;
+    border-radius: 15px;
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    font-weight: 600;
+	font-size: clamp(0.9rem, 3vw, 1.1rem);
+}
+.pending{
+    background-color: #EDF2EE;
+    color: #52695A;
+    border-color: #c5d5cc;
+}
+.delivered{
+  background-color: #4C7A5C;
+  color: #FFFFFF; 
+  border-color: #336b51; 
+}
+.shipped{
+    background-color: #BFDCC6;
+    color: #2E6B45;
+    border-color: #58856e;
+}
+.processing{
+    background-color: #c5d5cc;
+    color: #3F6350;
+    border-color: #D9E6DC;
+}
+.cancelled{
+    background-color: #E8E9E7;
+    color: #6B7280;
+    border-color: #d8e3dd;
+}
+@keyframes statusPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.2); 
+    opacity: 1;         
+  }
+}
+.pulse{
+    height: 7px;
+    width: 7px;
+    background-color: currentColor;
+    display: block;
+    border-radius: 25px;
+    animation: statusPulse 2s infinite ease-in-out;
+}
+.productImage{
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+	flex: 0 0 56px;
+}
+
+.middleCard .orderDetails h1{
+	font-size: clamp(1.1rem, 3vw, 1.3rem);
+	font-weight: 400;
+	text-transform: capitalize;
+}
+.middleCard .orderDetails div{
+	background-color: #BFDCC6;
+	color:#3F6350;
+	padding: 2px 5px;
+	border-radius: 4px;
+	width: fit-content;
+	font-size: clamp(0.9rem, 3vw, 1.1rem);
+}
+
+.bottomCard .orderTotal p{
+	font-size: clamp(1rem, 3vw, 1.2rem);
+}
+.bottomCard .orderTotal h1{
+	font-size: clamp(1.1rem, 3vw, 1.2rem);
+	font-weight: 400;
+}
+
+.bottomCard button{
+	border: none;
+	border-radius: 7px;
+	background-color:#BFDCC6;
+	color: #005236;
+	padding: 2px 10px;
+	font-size: clamp(1rem, 3vw, 1.2rem);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5px;
+}

@@ -5,18 +5,19 @@
 .container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  align-items: stretch;
     gap: 20px;
     width: 100%;
-    padding: 10px 0 ;
+  box-sizing: border-box;
+  padding: 8px clamp(8px, 4vw, 48px);
 }
 .textContainer{
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100%;
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 12px 0;
 }
 .text{
     font-size: clamp(1.5rem, 4vw, 2rem);
@@ -45,10 +46,12 @@
   margin: 60px auto;
 }
 .products{
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  justify-content:space-between;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 350px;
+  gap: 10px;
+  width: 100%;
+  max-width: 1280px;
 }
 
 @keyframes spin {
@@ -60,16 +63,13 @@
   }
 }
 @media (min-width: 768px){
-  .container{
-    padding: 5vh 20vh;
-  }
   .products{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  .textContainer{
-    justify-content: flex-start;
+}
+
+@media (min-width: 1200px){
+  .products{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }

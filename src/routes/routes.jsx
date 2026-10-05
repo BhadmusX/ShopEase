@@ -17,6 +17,10 @@ import CreateProductPage from "../admin/pages/createProductPage/createProductPag
 import ProductsPage from "../admin/pages/productsPage/productsPage.jsx";
 import EditProductPage from "../admin/pages/editProductPage/editProductPage.jsx";
 import AnalyticsPage from "../admin/pages/analyticsPage/analyticsPage.jsx";
+import ForgotPassword from "../pages/forgotPasswordPage/forgotPassword.jsx";
+import ResetPassword from "../pages/resetPasswordPage/resetPassword.jsx";
+import AdminOrderPage from "../admin/pages/orderPage/orderPage.jsx";
+import OrderPage from "../pages/orderPage/orderPage.jsx";
 
 const RootLayout = () => (
     <AuthProvider>
@@ -48,6 +52,14 @@ const router = createBrowserRouter([
         element: <SignInPage/>
     },
     {
+        path: 'forgotpassword',
+        element: <ForgotPassword/>
+    },
+    {
+        path: "resetpassword/:token",
+        element: <ResetPassword/>
+    },
+    {
         element: <ProtectedRoute/>,
         children: [
              {
@@ -66,6 +78,9 @@ const router = createBrowserRouter([
         path: "wishlist",
         element: <WishList/>,
     }, 
+    {path: "orders",
+        element: <OrderPage/>
+    }
         ]
     },
     {
@@ -94,6 +109,9 @@ const router = createBrowserRouter([
                     {
                         path: 'products/edit/:id',
                         element: <EditProductPage/>
+                    },{
+                        path: 'orders',
+                        element: <AdminOrderPage/>
                     }
                 ]
             }

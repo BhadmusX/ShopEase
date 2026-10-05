@@ -68,7 +68,7 @@ export default function ProductCard({ product }) {
                 </div>
                 <div className={styles.addbtnContainer}>
                     <button className={styles.addbtn} onClick={handleAddToCart} disabled={loadingProductId === productId}><ShoppingCart size={20}/>{loadingProductId === productId ? "Adding" : "Add"}</button> 
-                    <div><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={handleAddToWish}/> </div>
+                    <div className={styles.wishIconContainer}><Heart className={isWishListed? styles.filledHeart : styles.heart} size={30} onClick={handleAddToWish}/> </div>
                 </div>
                 </div>
             </div>

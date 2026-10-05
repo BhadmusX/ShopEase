@@ -17,16 +17,32 @@
 
 
 .filterBtn{
-    border: 1px solid #336b51;
-    padding: 7px 20px;
+    border: 1px solid #c5d5cc;
+    padding: 5px 20px;
     border-radius: 25px;
     scroll-snap-align: start;
     color: #005236;
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(1rem, 3vw, 1.1rem);
     font-family: sans-serif;
     font-weight: 600;
     text-transform: capitalize;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }
 .active{
-    background-color: #c5d5cc;
+    background-color: #005236;
+    color: white;
+}
+.orderCount{
+  background-color: #0e2e20;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c5d5cc;
 }

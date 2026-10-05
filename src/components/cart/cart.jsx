@@ -45,27 +45,22 @@ export function Cart(){
             {
                 cartItems.map((item) => {
                     return <div className={styles.itemContainer} key={item._id}>
-
-
-                            <div className={styles.itemTopContainer}>
-                                <div>
-                                  <img src={item.imageUrl || item.image} alt={item.title} />
-                                <h1 className={styles.title}>{item.title}</h1>  
+                            <div className={styles.productDetails}>
+                                <img className={styles.productImage} src={item.imageUrl || item.image} alt={item.title} />
+                                <div className={styles.productInfo}>
+                                    <h1 className={styles.title}>{item.title}</h1>
+                                    <div className={styles.btnContainer}>
+                                        <button className={styles.btn} type="button" onClick={() => decreaseqty(item.qty - 1, item._id)}><Minus size={16}/></button>
+                                        <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateCartQuantity(Math.max(1, Number(e.target.value)), item._id)}/>
+                                        <button className={styles.btn} type="button" onClick={() => increaseqty(item.qty + 1, item._id)}><Plus size={16}/></button>
+                                    </div>
                                 </div>
-                                <div><h1 className={styles.price}>${item.price}</h1></div>
                             </div>
-
-                            <div className={styles.itemBottomContainer}>
-                                 <div className={styles.btnContainer}>
-                                       <button className={styles.btn} type="button" onClick={() => decreaseqty(item.qty - 1, item._id)}><Minus size={20}/></button>
-                                       <input className={styles.input} type="number" value={item.qty} min={1} onChange={(e) => updateCartQuantity(Math.max(1, Number(e.target.value)), item._id)}/>
-                                       <button className={styles.btn} type="button" onClick={() => increaseqty(item.qty + 1, item._id)}><Plus size={20}/></button>
-                                 </div>
-                                 <div><button className={styles.removeBtn} onClick={() => removeCartitem(item._id)}><Trash size={20}/>Remove</button></div>
+                            <div className={styles.productActions}>
+                                <p className={styles.price}>${item.price}</p>
+                                <div className={styles.subtotal}><p>Subtotal:</p>${subtotal(item)}</div>
+                                <button className={styles.removeBtn} onClick={() => removeCartitem(item._id)}><Trash size={16}/>Remove</button>
                             </div>
-
-                            <div className={styles.subtotal}><p>Subtotal:</p>${subtotal(item)}</div>
-
                     </div>
                 })
             }

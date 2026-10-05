@@ -32,7 +32,14 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-    justify-content: space-around;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+      &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
 }
 .heroLink{
    display: flex;
@@ -45,6 +52,9 @@
     border-radius: 7px;
     background-color: white;
     transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    
 }
 .heroLink:hover{
 background-color: #f1f5f9;
