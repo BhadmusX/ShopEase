@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import ProductFilter from '../../admin/component/productFilter/productFilter';
 import { Footer } from '../../components/footer/footer';
 import { Navbar } from '../../components/navbar/navbar';
-import OrderCard from '../../components/orderCard/ordercard';
+import OrderCard from '../../components/orderCard/orderCard.jsx';
 import useFetchOrders from '../../hooks/useFetchOrders';
 import styles from '../orderPage/orderPage.module.css';
 const OrderPage = () => {
