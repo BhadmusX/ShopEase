@@ -7,7 +7,5 @@
 .main {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  padding: 16px clamp(12px, 3vw, 24px);
+  padding: 0 20px;
 }
