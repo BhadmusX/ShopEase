@@ -74,7 +74,7 @@ const useFetchOrders = (categories) => {
         return activeCategory === "all" ? userOrders : userOrders.filter(i => i.status === activeCategory);
     }, [activeCategory, userOrders]);
 
-    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus, filteredUsersOrders, fetchUserOrders, categoryCount, caategoryAdminCount, setUserLoading};
+    return {adminLoading, adminOrders, fetchOrders, filteredOrders, activeCategory, setActiveCategory, updateOrderStatus, filteredUsersOrders, fetchUserOrders, categoryCount, caategoryAdminCount, setUserLoading, userLoading};
 }
 
 export default useFetchOrders;
